@@ -1,0 +1,112 @@
+﻿<!DOCTYPE html>
+<html ng-app="ngBoilerplate" ng-controller="AppCtrl">
+  <head>
+    <title ng-bind="pageTitle"></title>
+  	<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+
+    <!-- social media tags -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@webyildirim">
+    <meta name="twitter:title" content="trafficalarm">
+    <meta name="twitter:description" content="Rotalarınızın yoğunluğundan haberdar olun! Trafik Alarm ile alternatiflerinizi belirleyin.">
+    <meta name="twitter:creator" content="@webyildirim">
+    <meta name="twitter:image:src" content="https://a248.e.akamai.net/assets.github.com/images/modules/logos_page/Octocat.png?1366128846">
+    <meta property="og:title" content="TrafikHaberci" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="http://trafficjournalist.com" />
+    <meta property="og:image" content="http://www.walltor.com/images/wallpaper/traffic-light-57769.jpg" />
+    <meta property="og:description" content="Trafiğin nabzını tutun: Trafik Haberci ile alternatiflerinizi belirleyin. Vakti geldiğinde en hızlı yolu size bildirelim.">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- font awesome from BootstrapCDN -->
+    <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+
+    <!-- compiled CSS --><% styles.forEach( function ( file ) { %>
+    <link rel="stylesheet" type="text/css" href="<%= file %>" /><% }); %>
+
+    <!-- compiled JavaScript --><% scripts.forEach( function ( file ) { %>
+    <script type="text/javascript" src="<%= file %>"></script><% }); %>
+
+    <!-- it's stupid to have to load it here, but this is for the +1 button -->
+    <script type="text/javascript" src="https://apis.google.com/js/plusone.js">
+      { "parsetags": "explicit" }
+    </script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="navbar navbar-default">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" ng-init="menuCollapsed = true"
+            ng-click="menuCollapsed = ! menuCollapsed">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <div class="navbar-brand">
+            Trafik Alarm
+            <small>
+              1.0
+            </small>
+          </div>
+        </div>
+        <div class="collapse navbar-collapse" collapse="menuCollapsed">
+          <ul class="nav navbar-nav">
+            <li ui-sref-active="active">
+              <a href ui-sref="home">
+                <i class="fa fa-home"></i>
+                Anasayfa
+              </a>
+            </li>
+            <li>
+              <a href ui-sref="accountSearch">
+                <i class="fa fa-book"></i>
+                Accounts
+              </a>
+            </li>
+            <li ng-show="isLoggedIn()">
+              <a href="routes">
+                <i class="fa fa-map-marker"></i>
+                Rotalarım
+              </a>
+            </li>
+            <li>
+              <a href="https://github.com/ngbp/ngbp/issues">
+                <i class="fa fa-comments"></i>
+                Support
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="container" ui-view="main"></div>
+ 
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-inner">
+          <ul class="social">
+            <li><a target="_blank" href="http://google.com/+mustafayildirimweb"><i class="fa fa-google-plus-sign"></i></a></li>
+            <li><a target="_blank" href="http://twitter.com/trafficalarm"><i class="fa fa-twitter-sign"></i></a></li>
+            <li><a target="_blank" href="http://tr.linkedin.com/in/webyildirim"><i class="fa fa-linkedin-sign"></i></a></li>
+          </ul>
+          
+
+          <p>
+            (c) 2014 <a href="http://www.yildirimmustafa.com">webyildirim</a>. 
+            Projenin kullandığı teknolojiler:
+            <a href="http://www.spring.io">Spring</a>,
+            <a href="http://www.angularjs.org">AngularJS</a>,
+            <a href="http://getbootstrap.com">Bootstrap</a>, 
+            <a href="http://angular-ui.github.com/bootstrap">UI Bootstrap</a>
+            <a href="http://lesscss.org">Less CSS</a>
+            ve 
+            <a href="http://fortawesome.github.com/Font-Awesome">Font Awesome</a>.        
+          </p>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

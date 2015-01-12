@@ -1,0 +1,78 @@
+﻿<div class="jumbotron">
+  <h1>Trafik Haberci</h1>
+
+  <p class="lead">
+    Trafiğin nabzını tutun! Trafik Haberci ile alternatiflerinizi belirleyin. Vakti geldiğinde en hızlı yolu size bildirelim.  
+  </p>
+
+  <ul class="list-inline social-buttons">
+    <li>
+       <iframe allowtransparency="true" frameborder="0" scrolling="no"
+        src="https://platform.twitter.com/widgets/tweet_button.html?url=http%3A%2F%2Ftrafikhaberci.com&counturl=trafikhaberci&text=%23trafikhaberci%20ile%20trafiğin%20nabzını%20tutun!&hashtags=trafikhaberci&via=trafikhaberci&related=trafikhaberci"
+        style="width:130px; height:20px;"></iframe>
+    </li>
+    <li plus-one></li>
+  </ul> 
+  
+  <div class="btn-group" ng-hide="isLoggedIn()">
+    <a ui-sref="login" class="btn btn-large btn-default">
+      <i class="fa fa-sign-in"></i>
+      Giriş Yap
+    </a>
+    <a ui-sref="register" class="btn btn-large btn-success">
+      <i class="fa fa-ticket"></i>
+      Kaydol
+    </a>
+  </div>
+
+    <div class="btn-group" ng-show="isLoggedIn()">
+        <a ng-click="logout()" class="btn btn-large btn-default">
+            <i class="fa fa-sign-out"></i>
+            Çıkış
+        </a>
+    </div>
+
+
+</div>
+
+<div class="marketing">
+  <div class="row">
+    <div class="col-xs-12 col-sm-6 col-md-4">
+      <h4><i class="fa fa-thumbs-up"></i> Alternatifleriniz arasından en hızlısı!</h4>
+      <p>
+        İster web, ister mobil üzerinden alternatif rotalarınızı belirleyin. Sizin için en hızlısını bulalım.
+      </p>
+    </div>
+    <div class="col-xs-12 col-sm-6 col-md-4">
+      <h4><i class="fa fa-magic"></i> İstenen zamanda en uygun yol cebinize gelsin.</h4>
+      <p>
+        Hedef rotanız için zamanlayıcı kurun, biz sizin için hesaplayıp haber verelim.
+      </p>
+    </div>
+    <div class="col-xs-12 col-sm-6 col-md-4">
+      <h4><i class="fa fa-retweet"></i> Sınırsız Değişiklik</h4>
+      <p>
+        Kolayca rotalarınızı değiştirin, silin, yada yeni ekleyin. Alternatifler türetin. 
+      </p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12 col-sm-6 col-md-4">
+      <h4><i class="fa fa-star"></i> Bedava</h4>
+      <p>
+        İster mobil uygulamamızı indirip cep telefonunuza anlık bildirim, isterseniz de web üzerinden kullanarak eposta bildirimi alın. 
+        Tüm hizmetler ücretsiz!
+      </p>
+    </div>
+    <div class="col-xs-12 col-sm-6 col-md-4">
+      <h4><i class="fa fa-asterisk"></i> Yandex Maps</h4>
+      <p>
+        Trafik durumunun en başarılı şekilde hesaba katıldığı Yandex Map servisi kullanılarak rotalarınızdan en uygunu bulunmaktadır.
+        <a href="https://maps.yandex.com/">
+          Yandex Map &raquo;
+        </a>
+      </p>
+    </div>
+  </div>
+</div>
+
