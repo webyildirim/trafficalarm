@@ -9,10 +9,11 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
-import com.accmee.trafficalarm.core.models.entities.Blog;
-import com.accmee.trafficalarm.core.models.entities.BlogEntry;
-import com.accmee.trafficalarm.core.services.BlogEntryService;
-import com.accmee.trafficalarm.rest.mvc.BlogEntryController;
+import com.trafficalarm.core.model.entities.Blog;
+import com.trafficalarm.core.model.entities.BlogEntry;
+import com.trafficalarm.core.services.BlogEntryService;
+import com.trafficalarm.rest.mvc.BlogEntryController;
+
 import static org.hamcrest.Matchers.*;
 import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.eq;

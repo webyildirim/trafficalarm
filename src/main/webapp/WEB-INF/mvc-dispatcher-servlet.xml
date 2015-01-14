@@ -12,7 +12,7 @@
         http://www.springframework.org/schema/context/spring-context.xsd
         http://www.springframework.org/schema/security
         http://www.springframework.org/schema/security/spring-security.xsd">
-    <context:component-scan base-package="com.accmee.trafficalarm.rest.mvc"/>
+    <context:component-scan base-package="com.trafficalarm.rest.mvc"/>
 
     <mvc:resources mapping="/app/**" location="/app/build/"/>
 
@@ -24,7 +24,7 @@
     </bean>
 
     <security:global-method-security pre-post-annotations="enabled">
-        <security:protect-pointcut expression="execution(* com.accmee.trafficalarm.rest.mvc.*.*(..))"
+        <security:protect-pointcut expression="execution(* com.trafficalarm.rest.mvc.*.*(..))"
                                    access="ROLE_DUMMY"/>
     </security:global-method-security>
 

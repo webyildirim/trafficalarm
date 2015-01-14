@@ -9,8 +9,8 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.accmee.trafficalarm.core.models.entities.Account;
-import com.accmee.trafficalarm.core.repositories.AccountRepo;
+import com.trafficalarm.core.model.entities.Account;
+import com.trafficalarm.core.repositories.AccountRepo;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;

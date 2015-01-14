@@ -10,14 +10,14 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
-import com.accmee.trafficalarm.core.models.entities.Account;
-import com.accmee.trafficalarm.core.models.entities.Blog;
-import com.accmee.trafficalarm.core.models.entities.BlogEntry;
-import com.accmee.trafficalarm.core.services.BlogService;
-import com.accmee.trafficalarm.core.services.exceptions.EntityNotFoundException;
-import com.accmee.trafficalarm.core.services.util.BlogEntryList;
-import com.accmee.trafficalarm.core.services.util.BlogList;
-import com.accmee.trafficalarm.rest.mvc.BlogController;
+import com.trafficalarm.core.model.entities.Account;
+import com.trafficalarm.core.model.entities.Blog;
+import com.trafficalarm.core.model.entities.BlogEntry;
+import com.trafficalarm.core.services.BlogService;
+import com.trafficalarm.core.services.exceptions.EntityNotFoundException;
+import com.trafficalarm.core.services.util.BlogEntryList;
+import com.trafficalarm.core.services.util.BlogList;
+import com.trafficalarm.rest.mvc.BlogController;
 
 import java.util.ArrayList;
 import java.util.List;

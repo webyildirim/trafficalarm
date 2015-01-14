@@ -11,15 +11,15 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
-import com.accmee.trafficalarm.core.models.entities.Account;
-import com.accmee.trafficalarm.core.models.entities.Blog;
-import com.accmee.trafficalarm.core.services.AccountService;
-import com.accmee.trafficalarm.core.services.exceptions.AccountDoesNotExistException;
-import com.accmee.trafficalarm.core.services.exceptions.AccountExistsException;
-import com.accmee.trafficalarm.core.services.exceptions.EntityAlreadyExistsException;
-import com.accmee.trafficalarm.core.services.util.AccountList;
-import com.accmee.trafficalarm.core.services.util.BlogList;
-import com.accmee.trafficalarm.rest.mvc.AccountController;
+import com.trafficalarm.core.model.entities.Account;
+import com.trafficalarm.core.model.entities.Blog;
+import com.trafficalarm.core.services.AccountService;
+import com.trafficalarm.core.services.exceptions.AccountDoesNotExistException;
+import com.trafficalarm.core.services.exceptions.AccountExistsException;
+import com.trafficalarm.core.services.exceptions.EntityAlreadyExistsException;
+import com.trafficalarm.core.services.util.AccountList;
+import com.trafficalarm.core.services.util.BlogList;
+import com.trafficalarm.rest.mvc.AccountController;
 
 import java.util.ArrayList;
 import java.util.List;
