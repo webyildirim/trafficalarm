@@ -15,6 +15,7 @@ public class RouteDetail extends BaseEntity {
     @Id
     @GeneratedValue
     private Long id;
+    private String title;
     private String coordinate;
     
     @ManyToOne
@@ -46,6 +47,14 @@ public class RouteDetail extends BaseEntity {
 
 	public void setCoordinate(String coordinate) {
 		this.coordinate = coordinate;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
 	}
 
 	@Override

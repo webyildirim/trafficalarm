@@ -51,7 +51,7 @@ public class RouteServiceImpl implements RouteService {
 	}
 
 	@Override
-	public RouteDetailList findAllRouteDetails(Long routeId) {
+	public RouteDetailList findDetailsByRoute(Long routeId) {
     	Route route = routeRepo.findRoute(routeId);
         if(route == null)
         {

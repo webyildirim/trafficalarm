@@ -34,6 +34,12 @@ public class Route extends BaseEntity{
 		details=new ArrayList<RouteDetail>();
 	}
 
+	public Route(Long id) {
+		entityName="Route";
+		this.id=id;
+		details=new ArrayList<RouteDetail>();
+	}
+
     public RouteGroup getRouteGroup() {
 		return routeGroup;
 	}

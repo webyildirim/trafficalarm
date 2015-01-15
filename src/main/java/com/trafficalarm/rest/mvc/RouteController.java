@@ -13,10 +13,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.trafficalarm.core.model.entities.Route;
+import com.trafficalarm.core.model.entities.RouteDetail;
+import com.trafficalarm.core.services.RouteDetailService;
 import com.trafficalarm.core.services.RouteService;
 import com.trafficalarm.core.services.exceptions.EntityNotFoundException;
 import com.trafficalarm.rest.exceptions.NotFoundException;
+import com.trafficalarm.rest.resources.RouteDetailResource;
 import com.trafficalarm.rest.resources.RouteResource;
+import com.trafficalarm.rest.resources.asm.RouteDetailResourceAsm;
 import com.trafficalarm.rest.resources.asm.RouteResourceAsm;
 
 /**
@@ -25,12 +29,14 @@ import com.trafficalarm.rest.resources.asm.RouteResourceAsm;
 @Controller
 @RequestMapping("/rest/routes")
 public class RouteController {
-	
+
     private RouteService routeService;
+    private RouteDetailService routeDetailService;
 
     @Autowired
-    public RouteController(RouteService routeService) {
+    public RouteController(RouteService routeService, RouteDetailService routeDetailService) {
         this.routeService=routeService;
+        this.routeDetailService=routeDetailService;
     }
     
     @RequestMapping(value="/{routeId}",
@@ -48,17 +54,17 @@ public class RouteController {
 
     @RequestMapping(value="/{routeId}/routeDetails",
             method = RequestMethod.POST)
-    public ResponseEntity<RouteResource> createRoute(
+    public ResponseEntity<RouteDetailResource> createRouteDetail(
             @PathVariable Long routeId,
-            @RequestBody RouteResource sentResource
+            @RequestBody RouteDetailResource sentResource
     ) {
-        Route createdEntity = null;
+        RouteDetail createdEntity = null;
         try {
-            createdEntity = routeService.createRoute(routeId, sentResource.toRoute());
-            RouteResource createdResource = new RouteResourceAsm().toResource(createdEntity);
+            createdEntity = routeDetailService.createRouteDetail(routeId, sentResource.toRoute());
+            RouteDetailResource createdResource = new RouteDetailResourceAsm().toResource(createdEntity);
             HttpHeaders headers = new HttpHeaders();
             headers.setLocation(URI.create(createdResource.getLink("self").getHref()));
-            return new ResponseEntity<RouteResource>(createdResource, headers, HttpStatus.CREATED);
+            return new ResponseEntity<RouteDetailResource>(createdResource, headers, HttpStatus.CREATED);
         } catch (EntityNotFoundException e) {
             throw new NotFoundException(e);
         }catch (Exception e) {
