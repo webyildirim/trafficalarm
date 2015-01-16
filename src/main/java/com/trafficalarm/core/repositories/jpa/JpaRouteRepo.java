@@ -55,7 +55,7 @@ public class JpaRouteRepo implements RouteRepo {
     }
 
     @Override
-    public List<Route> findByRouteGroupId(Long routeGroupId) {
+    public List<Route> findByRouteGroup(Long routeGroupId) {
         Query query = manager.createQuery("SELECT rg.routes FROM RouteGroup rg WHERE rg.id=?1");
         query.setParameter(1, routeGroupId);
         return query.getResultList();

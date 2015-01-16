@@ -10,7 +10,7 @@ import com.trafficalarm.rest.resources.RouteGroupResource;
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.*;
 
 /**
- * Created by Chris on 6/30/14.
+ * Created by webyildirim on 6/30/14.
  */
 public class RouteGroupResourceAsm extends ResourceAssemblerSupport<RouteGroup, RouteGroupResource> {
     public RouteGroupResourceAsm() {

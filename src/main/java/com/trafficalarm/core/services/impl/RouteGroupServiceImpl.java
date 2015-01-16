@@ -8,10 +8,12 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.trafficalarm.core.model.entities.Route;
 import com.trafficalarm.core.model.entities.RouteGroup;
+import com.trafficalarm.core.model.entities.RouteGroupSchedule;
 import com.trafficalarm.core.repositories.RouteGroupRepo;
 import com.trafficalarm.core.repositories.RouteRepo;
 import com.trafficalarm.core.services.RouteGroupService;
 import com.trafficalarm.core.services.exceptions.EntityNotFoundException;
+import com.trafficalarm.core.services.util.RouteGroupScheduleList;
 import com.trafficalarm.core.services.util.RouteList;
 
 /**
@@ -45,5 +47,15 @@ public class RouteGroupServiceImpl implements RouteGroupService {
             throw new EntityNotFoundException();
         }
         return new RouteList(routeGroupId, (List<Route>) routeGroup.getRoutes());
+    }
+    
+    @Override
+    public RouteGroupScheduleList findAllRouteSchedules(Long routeGroupId) {
+    	RouteGroup routeGroup = routeGroupRepo.findRouteGroup(routeGroupId);
+        if(routeGroup == null)
+        {
+            throw new EntityNotFoundException();
+        }
+        return new RouteGroupScheduleList(routeGroupId, (List<RouteGroupSchedule>) routeGroup.getRouteSchedules());
     }
 }

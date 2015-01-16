@@ -11,7 +11,7 @@ import com.trafficalarm.rest.resources.BlogEntryResource;
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.*;
 
 /**
- * Created by Chris on 6/27/14.
+ * Created by webyildirim on 6/27/14.
  */
 public class BlogEntryResourceAsm extends ResourceAssemblerSupport<BlogEntry, BlogEntryResource> {
 

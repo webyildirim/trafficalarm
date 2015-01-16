@@ -9,7 +9,7 @@ import com.trafficalarm.rest.resources.AccountResource;
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.*;
 
 /**
- * Created by Chris on 6/28/14.
+ * Created by webyildirim on 6/28/14.
  */
 public class AccountResourceAsm extends ResourceAssemblerSupport<Account, AccountResource> {
     public AccountResourceAsm() {

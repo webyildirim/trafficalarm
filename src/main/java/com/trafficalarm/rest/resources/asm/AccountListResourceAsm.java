@@ -10,7 +10,7 @@ import com.trafficalarm.rest.resources.AccountResource;
 import java.util.List;
 
 /**
- * Created by Chris on 7/22/14.
+ * Created by webyildirim on 7/22/14.
  */
 public class AccountListResourceAsm extends ResourceAssemblerSupport<AccountList, AccountListResource> {
 

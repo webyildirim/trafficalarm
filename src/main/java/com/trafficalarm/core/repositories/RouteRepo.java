@@ -33,5 +33,5 @@ public interface RouteRepo {
 
     public Route createRoute(Route data) throws Exception;
 
-    public List<Route> findByRouteGroupId(Long routeGroupId);
+    public List<Route> findByRouteGroup(Long routeGroupId);
 }

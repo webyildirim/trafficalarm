@@ -7,7 +7,7 @@ import com.trafficalarm.rest.mvc.BlogController;
 import com.trafficalarm.rest.resources.BlogListResource;
 
 /**
- * Created by Chris on 7/1/14.
+ * Created by webyildirim on 7/1/14.
  */
 public class BlogListResourceAsm extends ResourceAssemblerSupport<BlogList, BlogListResource> {
 

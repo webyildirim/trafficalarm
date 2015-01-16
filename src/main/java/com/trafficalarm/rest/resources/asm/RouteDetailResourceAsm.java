@@ -10,7 +10,7 @@ import com.trafficalarm.rest.mvc.RouteDetailController;
 import com.trafficalarm.rest.resources.RouteDetailResource;
 
 /**
- * Created by Chris on 6/30/14.
+ * Created by webyildirim on 6/30/14.
  */
 public class RouteDetailResourceAsm extends ResourceAssemblerSupport<RouteDetail, RouteDetailResource> {
     public RouteDetailResourceAsm() {
