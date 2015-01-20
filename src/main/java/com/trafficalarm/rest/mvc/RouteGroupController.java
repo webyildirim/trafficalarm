@@ -14,15 +14,22 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.trafficalarm.core.model.entities.Route;
 import com.trafficalarm.core.model.entities.RouteGroup;
+import com.trafficalarm.core.model.entities.RouteSchedule;
+import com.trafficalarm.core.services.RouteSchedService;
 import com.trafficalarm.core.services.RouteGroupService;
 import com.trafficalarm.core.services.RouteService;
 import com.trafficalarm.core.services.exceptions.EntityNotFoundException;
+import com.trafficalarm.core.services.util.RouteSchedList;
 import com.trafficalarm.core.services.util.RouteList;
 import com.trafficalarm.rest.exceptions.NotFoundException;
 import com.trafficalarm.rest.resources.RouteGroupResource;
+import com.trafficalarm.rest.resources.RouteSchedListResource;
+import com.trafficalarm.rest.resources.RouteSchedResource;
 import com.trafficalarm.rest.resources.RouteListResource;
 import com.trafficalarm.rest.resources.RouteResource;
 import com.trafficalarm.rest.resources.asm.RouteGroupResourceAsm;
+import com.trafficalarm.rest.resources.asm.RouteSchedListResourceAsm;
+import com.trafficalarm.rest.resources.asm.RouteSchedResourceAsm;
 import com.trafficalarm.rest.resources.asm.RouteListResourceAsm;
 import com.trafficalarm.rest.resources.asm.RouteResourceAsm;
 
@@ -34,16 +41,18 @@ import com.trafficalarm.rest.resources.asm.RouteResourceAsm;
 public class RouteGroupController {
     private RouteGroupService routeGroupService;
     private RouteService routeService;
+    private RouteSchedService routeSchedService;
 
     @Autowired
-    public RouteGroupController(RouteGroupService routeGroupService, RouteService routeService) {
+    public RouteGroupController(RouteGroupService routeGroupService, RouteService routeService, RouteSchedService routeSchedService) {
         this.routeGroupService = routeGroupService;
         this.routeService=routeService;
+        this.routeSchedService=routeSchedService;
     }
     
     @RequestMapping(value="/{routeGroupId}",
         method = RequestMethod.GET)
-    public ResponseEntity<RouteGroupResource> getBlog(@PathVariable Long blogId)
+    public ResponseEntity<RouteGroupResource> getRouteGroupResource(@PathVariable Long blogId)
     {
         RouteGroup routeGroup = routeGroupService.findRouteGroup(blogId);
         if(routeGroup != null) {
@@ -89,4 +98,38 @@ public class RouteGroupController {
         }
     }
 
+    @RequestMapping(value="/{routeGroupId}/route-schedules")
+    public ResponseEntity<RouteSchedListResource> findAllSchedules(
+            @PathVariable Long routeGroupId)
+    {
+        try {
+            RouteSchedList list = routeGroupService.findAllRouteSchedules(routeGroupId);
+            RouteSchedListResource res = new RouteSchedListResourceAsm().toResource(list);
+            return new ResponseEntity<RouteSchedListResource>(res, HttpStatus.OK);
+        } catch(EntityNotFoundException exception)
+        {
+            throw new NotFoundException(exception);
+        }
+    }
+
+    @RequestMapping(value="/{routeGroupId}/routes",
+            method = RequestMethod.POST)
+    public ResponseEntity<RouteSchedResource> createRouteSchedule(
+            @PathVariable Long routeGroupId,
+            @RequestBody RouteSchedResource sentResource
+    ) {
+        RouteSchedule createdEntity = null;
+        try {
+            createdEntity = routeSchedService.createRouteSched(routeGroupId, sentResource.toRouteSchedule());
+            RouteSchedResource createdResource = new RouteSchedResourceAsm().toResource(createdEntity);
+            HttpHeaders headers = new HttpHeaders();
+            headers.setLocation(URI.create(createdResource.getLink("self").getHref()));
+            return new ResponseEntity<RouteSchedResource>(createdResource, headers, HttpStatus.CREATED);
+        } catch (EntityNotFoundException e) {
+            throw new NotFoundException(e);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+		return null;
+    }
 }

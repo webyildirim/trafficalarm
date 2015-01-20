@@ -30,13 +30,13 @@ public class RouteGroup extends BaseEntity{
     @OneToMany(targetEntity = Route.class, mappedBy="routeGroup", cascade = { CascadeType.ALL }, fetch=FetchType.EAGER)
     private Collection<Route> routes;
     
-    @OneToMany(targetEntity = RouteGroupSchedule.class, mappedBy="routeGroup", cascade = { CascadeType.ALL }, fetch=FetchType.EAGER)
-    private Collection<RouteGroupSchedule> routeSchedules;
+    @OneToMany(targetEntity = RouteSchedule.class, mappedBy="routeGroup", cascade = { CascadeType.ALL }, fetch=FetchType.EAGER)
+    private Collection<RouteSchedule> routeSchedules;
 
 	public RouteGroup() {
 		entityName="RouteGroup";
 		routes=new ArrayList<Route>();
-		routeSchedules=new ArrayList<RouteGroupSchedule>();
+		routeSchedules=new ArrayList<RouteSchedule>();
 	}
 	
 	public RouteGroup(Long id) {
@@ -78,11 +78,11 @@ public class RouteGroup extends BaseEntity{
 		this.routes = routes;
 	}
 
-	public Collection<RouteGroupSchedule> getRouteSchedules() {
+	public Collection<RouteSchedule> getRouteSchedules() {
 		return routeSchedules;
 	}
 
-	public void setRouteSchedules(Collection<RouteGroupSchedule> routeSchedules) {
+	public void setRouteSchedules(Collection<RouteSchedule> routeSchedules) {
 		this.routeSchedules = routeSchedules;
 	}
 

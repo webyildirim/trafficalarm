@@ -10,45 +10,45 @@ import org.springframework.stereotype.Repository;
 
 import com.structure.BaseEntity;
 import com.structure.persistence.MainDao;
-import com.trafficalarm.core.model.entities.RouteGroupSchedule;
-import com.trafficalarm.core.repositories.RouteGroupScheduleRepo;
+import com.trafficalarm.core.model.entities.RouteSchedule;
+import com.trafficalarm.core.repositories.RouteScheduleRepo;
 
 /**
  * Created by webyildirim on 7/10/14.
  */
 @Repository
-public class JpaRouteGroupRepoSchedule implements RouteGroupScheduleRepo{
+public class JpaRouteScheduleRepo implements RouteScheduleRepo{
     @PersistenceContext
     private EntityManager manager;
     
     private MainDao dao=null;
 
-    public JpaRouteGroupRepoSchedule() {
+    public JpaRouteScheduleRepo() {
     	dao=new MainDao();
 	}
     
     @Override
-    public RouteGroupSchedule createRouteGroupSchedule(RouteGroupSchedule data) throws Exception {
-        return (RouteGroupSchedule) dao.saveOrUpdateEntity(manager, data);
+    public RouteSchedule createRouteSchedule(RouteSchedule data) throws Exception {
+        return (RouteSchedule) dao.saveOrUpdateEntity(manager, data);
     }
 
     @Override
-    public RouteGroupSchedule findRouteGroupSchedule(Long id) {
-    	BaseEntity entity=new RouteGroupSchedule();
+    public RouteSchedule findRouteSchedule(Long id) {
+    	BaseEntity entity=new RouteSchedule();
     	entity.setId(id);    	
-        return (RouteGroupSchedule) dao.findByPrimaryKey(manager, entity);
+        return (RouteSchedule) dao.findByPrimaryKey(manager, entity);
     }
 
     @Override
-    public RouteGroupSchedule deleteRouteGroupSchedule(Long id) throws Exception {
-    	RouteGroupSchedule routeGroup=findRouteGroupSchedule(id);
+    public RouteSchedule deleteRouteSchedule(Long id) throws Exception {
+    	RouteSchedule routeGroup=findRouteSchedule(id);
     	if(routeGroup!=null)
     		dao.removeEntity(manager, routeGroup);
         return routeGroup;
     }
 
     @Override
-    public List<RouteGroupSchedule> findByRouteGroup(Long routeGroupId) {
+    public List<RouteSchedule> findByRouteGroup(Long routeGroupId) {
         Query query = manager.createQuery("SELECT rg.routeSchedules FROM RouteGroup rg WHERE rg.id=?1");
         query.setParameter(1, routeGroupId);
         return query.getResultList();
