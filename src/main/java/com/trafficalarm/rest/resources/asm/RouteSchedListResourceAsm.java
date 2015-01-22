@@ -1,11 +1,14 @@
 package com.trafficalarm.rest.resources.asm;
 
+import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
+import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
+
 import java.util.List;
 
 import org.springframework.hateoas.mvc.ResourceAssemblerSupport;
 
 import com.trafficalarm.core.services.util.RouteSchedList;
-import com.trafficalarm.rest.mvc.RouteSchedController;
+import com.trafficalarm.rest.mvc.RouteGroupController;
 import com.trafficalarm.rest.resources.RouteSchedListResource;
 import com.trafficalarm.rest.resources.RouteSchedResource;
 
@@ -14,7 +17,7 @@ import com.trafficalarm.rest.resources.RouteSchedResource;
  */
 public class RouteSchedListResourceAsm extends ResourceAssemblerSupport<RouteSchedList, RouteSchedListResource> {
     public RouteSchedListResourceAsm() {
-        super(RouteSchedController.class, RouteSchedListResource.class);
+        super(RouteGroupController.class, RouteSchedListResource.class);
     }
 
     @Override
@@ -22,9 +25,7 @@ public class RouteSchedListResourceAsm extends ResourceAssemblerSupport<RouteSch
         List<RouteSchedResource> resources = new RouteSchedResourceAsm().toResources(list.getRouteSchedules());
         RouteSchedListResource listResource = new RouteSchedListResource();
         listResource.setSchedules(resources);
-//        resource.setTitle(entity.getTitle());
-//        resource.add(linkTo(Route.class).slash(entity.getId()).withSelfRel());
-//        resource.add(linkTo(Route.class).slash(entity.getId()).slash("routes").withRel("routes"));
+        listResource.add(linkTo(methodOn(RouteGroupController.class).findAllSchedules(list.getRouteGroupId())).withSelfRel());
         return listResource;
     }
 }

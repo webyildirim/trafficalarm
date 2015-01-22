@@ -1,20 +1,18 @@
 package com.trafficalarm.core.repositories.jpa;
 
-import org.springframework.stereotype.Repository;
-
-import com.structure.BaseEntity;
-import com.structure.BaseFilter;
-import com.structure.persistence.MainDao;
-import com.trafficalarm.core.model.entities.Account;
-import com.trafficalarm.core.model.entities.BlogEntry;
-import com.trafficalarm.core.model.entities.RouteGroup;
-import com.trafficalarm.core.repositories.RouteGroupRepo;
+import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
-import java.util.List;
+import org.springframework.stereotype.Repository;
+
+import com.structure.BaseEntity;
+import com.structure.BaseFilter;
+import com.structure.persistence.MainDao;
+import com.trafficalarm.core.model.entities.RouteGroup;
+import com.trafficalarm.core.repositories.RouteGroupRepo;
 
 /**
  * Created by webyildirim on 7/10/14.
@@ -33,6 +31,13 @@ public class JpaRouteGroupRepo implements RouteGroupRepo {
     @Override
     public RouteGroup createRouteGroup(RouteGroup data) throws Exception {
         return (RouteGroup) dao.saveOrUpdateEntity(manager, data);
+    }
+
+    @Override
+    public RouteGroup updateRouteGroup(Long id, RouteGroup entity) throws Exception {
+    	entity.setId(id);
+    	entity=(RouteGroup) dao.saveOrUpdateEntity(manager, entity);
+        return entity;
     }
 
     @Override

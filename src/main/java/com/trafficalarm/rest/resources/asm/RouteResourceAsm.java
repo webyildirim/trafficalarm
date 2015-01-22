@@ -6,6 +6,7 @@ import org.springframework.hateoas.mvc.ResourceAssemblerSupport;
 
 import com.trafficalarm.core.model.entities.Route;
 import com.trafficalarm.rest.mvc.RouteController;
+import com.trafficalarm.rest.mvc.RouteGroupController;
 import com.trafficalarm.rest.resources.RouteResource;
 
 /**
@@ -20,9 +21,14 @@ public class RouteResourceAsm extends ResourceAssemblerSupport<Route, RouteResou
     public RouteResource toResource(Route route) {
     	RouteResource resource = new RouteResource();
         resource.setTitle(route.getTitle());
-        resource.add(linkTo(Route.class).slash(route.getId()).withSelfRel());
-        resource.add(linkTo(Route.class).slash(route.getId()).slash("routes").withRel("routes"));
         resource.setRid(route.getId());
+
+        resource.add(linkTo(RouteController.class).slash(route.getId()).withSelfRel());
+        resource.add(linkTo(RouteController.class).slash(route.getId()).slash("route-details").withRel("route-details"));
+        if(route.getRouteGroup() != null)
+        {
+        	resource.add((linkTo(RouteGroupController.class).slash(route.getRouteGroup().getId()).withRel("route-group")));
+        }
         return resource;
     }
 }

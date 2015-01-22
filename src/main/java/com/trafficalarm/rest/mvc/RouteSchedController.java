@@ -46,7 +46,7 @@ public class RouteSchedController {
         }
     }
 
-    @RequestMapping(value="/{routeId}/routeDetails",
+    @RequestMapping(value="/{routeId}/route-schedules",
             method = RequestMethod.POST)
     public ResponseEntity<RouteSchedResource> createRouteSched(
             @PathVariable Long routeGroupId,

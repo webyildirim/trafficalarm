@@ -19,24 +19,24 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.trafficalarm.core.model.entities.Account;
-import com.trafficalarm.core.model.entities.Blog;
+import com.trafficalarm.core.model.entities.RouteGroup;
 import com.trafficalarm.core.services.AccountService;
 import com.trafficalarm.core.services.exceptions.AccountDoesNotExistException;
 import com.trafficalarm.core.services.exceptions.AccountExistsException;
 import com.trafficalarm.core.services.exceptions.EntityAlreadyExistsException;
 import com.trafficalarm.core.services.util.AccountList;
-import com.trafficalarm.core.services.util.BlogList;
+import com.trafficalarm.core.services.util.RouteGroupList;
 import com.trafficalarm.rest.exceptions.ConflictException;
 import com.trafficalarm.rest.exceptions.ForbiddenException;
 import com.trafficalarm.rest.exceptions.NotFoundException;
 import com.trafficalarm.rest.resources.AccountListResource;
 import com.trafficalarm.rest.resources.AccountResource;
-import com.trafficalarm.rest.resources.BlogListResource;
-import com.trafficalarm.rest.resources.BlogResource;
+import com.trafficalarm.rest.resources.RouteGroupListResource;
+import com.trafficalarm.rest.resources.RouteGroupResource;
 import com.trafficalarm.rest.resources.asm.AccountListResourceAsm;
 import com.trafficalarm.rest.resources.asm.AccountResourceAsm;
-import com.trafficalarm.rest.resources.asm.BlogListResourceAsm;
-import com.trafficalarm.rest.resources.asm.BlogResourceAsm;
+import com.trafficalarm.rest.resources.asm.RouteGroupListResourceAsm;
+import com.trafficalarm.rest.resources.asm.RouteGroupResourceAsm;
 
 /**
  * Created by webyildirim on 6/28/14.
@@ -108,55 +108,56 @@ public class AccountController {
             return new ResponseEntity<AccountResource>(HttpStatus.NOT_FOUND);
         }
     }
-
-    @RequestMapping(value="/{accountId}/blogs",
-        method = RequestMethod.POST)
-    @PreAuthorize("permitAll")
-    public ResponseEntity<BlogResource> createBlog(
-            @PathVariable Long accountId,
-            @RequestBody BlogResource res)
-    {
-        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        if(principal instanceof UserDetails) {
-            UserDetails details = (UserDetails)principal;
-            Account loggedIn = accountService.findByAccountName(details.getUsername());
-            if(loggedIn.getId() == accountId) {
-                try {
-                    Blog createdBlog = accountService.createBlog(accountId, res.toBlog());
-                    BlogResource createdBlogRes = new BlogResourceAsm().toResource(createdBlog);
-                    HttpHeaders headers = new HttpHeaders();
-                    headers.setLocation(URI.create(createdBlogRes.getLink("self").getHref()));
-                    return new ResponseEntity<BlogResource>(createdBlogRes, headers, HttpStatus.CREATED);
-                } catch(AccountDoesNotExistException exception)
-                {
-                    throw new NotFoundException(exception);
-                } catch(EntityAlreadyExistsException exception)
-                {
-                    throw new ConflictException(exception);
+    
+    @RequestMapping(value="/{accountId}/route-groups",
+            method = RequestMethod.POST)
+        @PreAuthorize("permitAll")
+        public ResponseEntity<RouteGroupResource> createRouteGroup(
+                @PathVariable Long accountId,
+                @RequestBody RouteGroupResource res)
+        {
+            Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+            if(principal instanceof UserDetails) {
+                UserDetails details = (UserDetails)principal;
+                Account loggedIn = accountService.findByAccountName(details.getUsername());
+                if(loggedIn.getId() == accountId) {
+                    try {
+                    	RouteGroup createdEntity = accountService.createRouteGroup(accountId, res.toRouteGroup());
+                        RouteGroupResource createdEntityRes = new RouteGroupResourceAsm().toResource(createdEntity);
+                        HttpHeaders headers = new HttpHeaders();
+                        headers.setLocation(URI.create(createdEntityRes.getLink("self").getHref()));
+                        return new ResponseEntity<RouteGroupResource>(createdEntityRes, headers, HttpStatus.CREATED);
+                    } catch(AccountDoesNotExistException exception)
+                    {
+                        throw new NotFoundException(exception);
+                    } catch(EntityAlreadyExistsException exception)
+                    {
+                        throw new ConflictException(exception);
+                    }catch(Exception exception)
+                    {
+                        throw new RuntimeException(exception.getCause());
+                    }
+                } else {
+                    throw new ForbiddenException();
                 }
             } else {
                 throw new ForbiddenException();
             }
-        } else {
-            throw new ForbiddenException();
         }
-    }
 
-    @RequestMapping(value="/{accountId}/blogs",
+    @RequestMapping(value="/{accountId}/route-groups",
             method = RequestMethod.GET)
     @PreAuthorize("permitAll")
-    public ResponseEntity<BlogListResource> findAllBlogs(
+    public ResponseEntity<RouteGroupListResource> findAllRouteGroups(
             @PathVariable Long accountId) {
         try {
-            BlogList blogList = accountService.findBlogsByAccount(accountId);
-            BlogListResource blogListRes = new BlogListResourceAsm().toResource(blogList);
-            return new ResponseEntity<BlogListResource>(blogListRes, HttpStatus.OK);
+            RouteGroupList entityList = accountService.findRouteGroupsByAccount(accountId);
+            RouteGroupListResource listResource = new RouteGroupListResourceAsm().toResource(entityList);
+            return new ResponseEntity<RouteGroupListResource>(listResource, HttpStatus.OK);
         } catch(AccountDoesNotExistException exception)
         {
             throw new NotFoundException(exception);
         }
     }
-
-
 
 }

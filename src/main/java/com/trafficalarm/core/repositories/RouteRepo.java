@@ -24,9 +24,9 @@ public interface RouteRepo {
     public Route deleteRoute(Long id) throws Exception; 
 
     /**
-     * @param id the id of the Route to updateBlogEntry
-     * @param data the Route containing the data to be used for the updateBlogEntry
-     * @return the updated BlogEntry or null if the BlogEntry with the id cannot be found
+     * @param id the id of the Route to updateRoute
+     * @param data the Route containing the data to be used for the updateRoute
+     * @return the updated updateRoute or null if the Route with the id cannot be found
      * @throws Exception 
      */
     public Route updateRoute(Long id, Route data) throws Exception;

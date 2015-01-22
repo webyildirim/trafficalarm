@@ -21,8 +21,9 @@ public class RouteGroupResourceAsm extends ResourceAssemblerSupport<RouteGroup, 
     public RouteGroupResource toResource(RouteGroup routeGroup) {
     	RouteGroupResource resource = new RouteGroupResource();
         resource.setTitle(routeGroup.getTitle());
-        resource.add(linkTo(RouteGroup.class).slash(routeGroup.getId()).withSelfRel());
-        resource.add(linkTo(RouteGroup.class).slash(routeGroup.getId()).slash("routes").withRel("routes"));
+        resource.add(linkTo(RouteGroupController.class).slash(routeGroup.getId()).withSelfRel());
+        resource.add(linkTo(RouteGroupController.class).slash(routeGroup.getId()).slash("routes").withRel("routes"));
+        resource.add(linkTo(RouteGroupController.class).slash(routeGroup.getId()).slash("route-schedules").withRel("route-schedules"));
         resource.setRid(routeGroup.getId());
         if(routeGroup.getOwner() != null)
             resource.add(linkTo(AccountController.class).slash(routeGroup.getOwner().getId()).withRel("owner"));

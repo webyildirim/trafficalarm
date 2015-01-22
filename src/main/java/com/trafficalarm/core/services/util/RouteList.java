@@ -9,23 +9,23 @@ import com.trafficalarm.core.model.entities.Route;
  * Created by webyildirim on 6/28/14.
  */
 public class RouteList {
-    private List<Route> routes = new ArrayList<Route>();
+    private List<Route> entities = new ArrayList<Route>();
     private Long routeGroupId;
 
     public RouteList(Long routeGroupId, List<Route> routes) {
         this.routeGroupId = routeGroupId;
-        this.routes = routes;
+        this.entities = routes;
     }
 
-    public List<Route> getEntries() {
-        return routes;
-    }
+    public List<Route> getEntities() {
+		return entities;
+	}
 
-    public void setEntries(List<Route> routes) {
-        this.routes = routes;
-    }
+	public void setEntities(List<Route> entities) {
+		this.entities = entities;
+	}
 
-    public Long getRouteGroupId() {
+	public Long getRouteGroupId() {
         return routeGroupId;
     }
 

@@ -22,7 +22,7 @@ public class RouteListResourceAsm extends ResourceAssemblerSupport<RouteList, Ro
 
     @Override
     public RouteListResource toResource(RouteList list) {
-        List<RouteResource> resources = new RouteResourceAsm().toResources(list.getEntries());
+        List<RouteResource> resources = new RouteResourceAsm().toResources(list.getEntities());
         RouteListResource listResource = new RouteListResource();
         listResource.setRoutes(resources);
         listResource.add(linkTo(methodOn(RouteGroupController.class).findAllRoutes(list.getRouteGroupId())).withSelfRel());

@@ -16,11 +16,12 @@ public class RouteGroupList {
         this.routeGroups = resultList;
     }
 
-    public List<RouteGroup> getBlogs() {
-        return routeGroups;
-    }
+	public List<RouteGroup> getRouteGroups() {
+		return routeGroups;
+	}
 
-    public void setBlogs(List<RouteGroup> blogs) {
-        this.routeGroups = blogs;
-    }
+	public void setRouteGroups(List<RouteGroup> routeGroups) {
+		this.routeGroups = routeGroups;
+	}
+
 }

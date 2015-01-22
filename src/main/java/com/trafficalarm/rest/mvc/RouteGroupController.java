@@ -52,9 +52,9 @@ public class RouteGroupController {
     
     @RequestMapping(value="/{routeGroupId}",
         method = RequestMethod.GET)
-    public ResponseEntity<RouteGroupResource> getRouteGroupResource(@PathVariable Long blogId)
+    public ResponseEntity<RouteGroupResource> getRouteGroupResource(@PathVariable Long routeGroupId)
     {
-        RouteGroup routeGroup = routeGroupService.findRouteGroup(blogId);
+        RouteGroup routeGroup = routeGroupService.findRouteGroup(routeGroupId);
         if(routeGroup != null) {
             RouteGroupResource res = new RouteGroupResourceAsm().toResource(routeGroup);
             return new ResponseEntity<RouteGroupResource>(res, HttpStatus.OK);
@@ -98,7 +98,8 @@ public class RouteGroupController {
         }
     }
 
-    @RequestMapping(value="/{routeGroupId}/route-schedules")
+    @RequestMapping(value="/{routeGroupId}/route-schedules",
+            method = RequestMethod.GET)
     public ResponseEntity<RouteSchedListResource> findAllSchedules(
             @PathVariable Long routeGroupId)
     {
@@ -112,7 +113,7 @@ public class RouteGroupController {
         }
     }
 
-    @RequestMapping(value="/{routeGroupId}/routes",
+    @RequestMapping(value="/{routeGroupId}/route-schedules",
             method = RequestMethod.POST)
     public ResponseEntity<RouteSchedResource> createRouteSchedule(
             @PathVariable Long routeGroupId,
@@ -132,4 +133,26 @@ public class RouteGroupController {
         }
 		return null;
     }
+    
+	@RequestMapping(value = "/{routeGroupId}", method = RequestMethod.PUT)
+	public ResponseEntity<RouteGroupResource> updateRouteGroup(
+			@PathVariable Long routeGroupId, @RequestBody RouteGroupResource sentResource) {
+		RouteGroup updatedEntity = null;
+		try {
+			updatedEntity = routeGroupService.updateRouteGroup(routeGroupId,
+					sentResource.toRouteGroup());
+
+			if (updatedEntity != null) {
+				RouteGroupResource res = new RouteGroupResourceAsm()
+						.toResource(updatedEntity);
+				return new ResponseEntity<RouteGroupResource>(res, HttpStatus.OK);
+			} else {
+				return new ResponseEntity<RouteGroupResource>(HttpStatus.NOT_FOUND);
+			}
+		} catch (EntityNotFoundException e) {
+			throw new NotFoundException(e);
+		} catch (Exception e) {
+			throw new RuntimeException(e.getCause());
+		}
+	}
 }

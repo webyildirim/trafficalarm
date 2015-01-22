@@ -4,8 +4,8 @@ import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
 
 import org.springframework.hateoas.mvc.ResourceAssemblerSupport;
 
-import com.trafficalarm.core.model.entities.Route;
 import com.trafficalarm.core.model.entities.RouteDetail;
+import com.trafficalarm.rest.mvc.RouteController;
 import com.trafficalarm.rest.mvc.RouteDetailController;
 import com.trafficalarm.rest.resources.RouteDetailResource;
 
@@ -18,13 +18,17 @@ public class RouteDetailResourceAsm extends ResourceAssemblerSupport<RouteDetail
     }
 
     @Override
-    public RouteDetailResource toResource(RouteDetail route) {
+    public RouteDetailResource toResource(RouteDetail routeDetail) {
     	RouteDetailResource resource = new RouteDetailResource();
-        resource.setTitle(route.getTitle());
-        resource.setCoordinate(route.getCoordinate());
-        resource.add(linkTo(Route.class).slash(route.getId()).withSelfRel());
-        resource.add(linkTo(Route.class).slash(route.getId()).slash("routes").withRel("routes"));
-        resource.setRid(route.getId());
+        resource.setTitle(routeDetail.getTitle());
+        resource.setCoordinate(routeDetail.getCoordinate());
+        resource.setRid(routeDetail.getId());
+        
+        resource.add(linkTo(RouteDetailController.class).slash(routeDetail.getId()).withSelfRel());
+        if(routeDetail.getRoute() != null)
+        {
+            resource.add((linkTo(RouteController.class).slash(routeDetail.getRoute().getId()).withRel("route")));
+        }
         return resource;
     }
 }

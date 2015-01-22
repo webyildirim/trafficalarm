@@ -30,6 +30,7 @@ public class Account extends BaseEntity{
 
 	public Account() {
 		this.entityName="Account";
+		//this.passive=true;
 	}
 
 	@Column(nullable=false,unique=true)

@@ -34,6 +34,11 @@ public class RouteGroupServiceImpl implements RouteGroupService {
         return routeGroupRepo.findRouteGroup(id);
     }
 
+    @Override
+    public RouteGroup updateRouteGroup(Long id, RouteGroup entity) throws Exception {
+        return routeGroupRepo.updateRouteGroup(id, entity);
+    }
+
 	@Override
 	public RouteGroup deleteRouteGroup(Long id) throws Exception {
 		return routeGroupRepo.deleteRouteGroup(id);

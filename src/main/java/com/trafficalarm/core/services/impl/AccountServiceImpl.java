@@ -5,18 +5,15 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.trafficalarm.core.model.entities.Account;
-import com.trafficalarm.core.model.entities.Blog;
 import com.trafficalarm.core.model.entities.RouteGroup;
 import com.trafficalarm.core.model.filter.RouteGroupFilter;
 import com.trafficalarm.core.repositories.AccountRepo;
-import com.trafficalarm.core.repositories.BlogRepo;
 import com.trafficalarm.core.repositories.RouteGroupRepo;
 import com.trafficalarm.core.services.AccountService;
 import com.trafficalarm.core.services.exceptions.AccountDoesNotExistException;
 import com.trafficalarm.core.services.exceptions.AccountExistsException;
 import com.trafficalarm.core.services.exceptions.EntityAlreadyExistsException;
 import com.trafficalarm.core.services.util.AccountList;
-import com.trafficalarm.core.services.util.BlogList;
 import com.trafficalarm.core.services.util.RouteGroupList;
 
 /**
@@ -28,9 +25,6 @@ public class AccountServiceImpl implements AccountService {
 
     @Autowired
     private AccountRepo accountRepo;
-
-    @Autowired
-    private BlogRepo blogRepo;
 
     @Autowired
     private RouteGroupRepo routeGroupRepo;
@@ -48,38 +42,6 @@ public class AccountServiceImpl implements AccountService {
             throw new AccountExistsException();
         }
         return accountRepo.createAccount(data);
-    }
-
-    @Override
-    public Blog createBlog(Long accountId, Blog data) {
-        Blog blogSameTitle = blogRepo.findBlogByTitle(data.getTitle());
-
-        if(blogSameTitle != null)
-        {
-            throw new EntityAlreadyExistsException("Blog zaten mevcut");
-        }
-
-        Account account = accountRepo.findAccount(accountId);
-        if(account == null)
-        {
-            throw new AccountDoesNotExistException();
-        }
-
-        Blog createdBlog = blogRepo.createBlog(data);
-
-        createdBlog.setOwner(account);
-
-        return createdBlog;
-    }
-
-    @Override
-    public BlogList findBlogsByAccount(Long accountId) {
-        Account account = accountRepo.findAccount(accountId);
-        if(account == null)
-        {
-            throw new AccountDoesNotExistException();
-        }
-        return new BlogList(blogRepo.findBlogsByAccount(accountId));
     }
 
     @Override

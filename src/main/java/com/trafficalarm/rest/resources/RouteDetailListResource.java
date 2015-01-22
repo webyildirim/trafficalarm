@@ -9,13 +9,14 @@ import org.springframework.hateoas.ResourceSupport;
  * Created by webyildirim on 6/30/14.
  */
 public class RouteDetailListResource extends ResourceSupport {
-    private List<RouteResource> routes = new ArrayList<RouteResource>();
+    private List<RouteDetailResource> routeDetails = new ArrayList<RouteDetailResource>();
 
-    public List<RouteResource> getRoutes() {
-        return routes;
-    }
+	public List<RouteDetailResource> getRouteDetails() {
+		return routeDetails;
+	}
 
-    public void setRoutes(List<RouteResource> routes) {
-        this.routes = routes;
-    }
+	public void setRouteDetails(List<RouteDetailResource> routeDetails) {
+		this.routeDetails = routeDetails;
+	}
+
 }

@@ -14,4 +14,12 @@ public interface RouteGroupRepo {
     public RouteGroup deleteRouteGroup(Long id) throws Exception; 
     public RouteGroup findRouteGroupByFilter(BaseFilter filter, String queryMethod);
     public List<RouteGroup> findRouteGroupsByAccount(Long accountId);
+
+    /**
+     * @param id the id of the Route to updateRoute
+     * @param data the Route containing the data to be used for the updateRoute
+     * @return the updated updateRoute or null if the Route with the id cannot be found
+     * @throws Exception 
+     */
+    public RouteGroup updateRouteGroup(Long id, RouteGroup data) throws Exception;
 }
