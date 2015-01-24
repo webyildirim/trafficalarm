@@ -14,12 +14,19 @@
         http://www.springframework.org/schema/tx/spring-tx.xsd">
 
     <context:component-scan base-package="com.trafficalarm.core.repositories.jpa"/>
-        <bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource">
-        <property name="username" value="sa"/>
-        <property name="password" value="sa"/>
-        <property name="url" value="jdbc:h2:mem:test"/>
-        <property name="driverClassName" value="org.h2.Driver"/>
-    </bean>
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+ 
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<property name="url" value="jdbc:mysql://ec2-50-112-131-92.us-west-2.compute.amazonaws.com:3306/medyabil" />
+		<property name="username" value="medyabil" />
+		<property name="password" value="Medyabil.DB2015" />
+	</bean>
+        <!--bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource"-->
+        <!--property name="username" value="sa"/-->
+        <!--property name="password" value="sa"/-->
+        <!--property name="url" value="jdbc:h2:mem:test"/-->
+        <!--property name="driverClassName" value="org.h2.Driver"/-->
+    	<!--/bean-->
 
     <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
         <property name="dataSource" ref="dataSource"/>
@@ -28,7 +35,8 @@
         </property>
         <property name="jpaProperties">
             <map>
-                <entry key="hibernate.hbm2ddl.auto" value="create-drop"/>
+         		<entry key="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/><!-- remove when working with mem db-->
+                <entry key="hibernate.hbm2ddl.auto" value="update"/>
                 <entry key="hibernate.show_sql" value="true"/>
             </map>
         </property>
