@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.trafficalarm.core.model.entities.RouteDetail;
 import com.trafficalarm.core.services.RouteDetailService;
+import com.trafficalarm.core.services.exceptions.EntityNotFoundException;
+import com.trafficalarm.rest.exceptions.NotFoundException;
 import com.trafficalarm.rest.resources.RouteDetailResource;
 import com.trafficalarm.rest.resources.asm.RouteDetailResourceAsm;
 
@@ -38,5 +40,17 @@ public class RouteDetailController {
             return new ResponseEntity<RouteDetailResource>(HttpStatus.NOT_FOUND);
         }
     }
+
+	@RequestMapping(value = "/{routeDetailId}", method = RequestMethod.DELETE)
+	public void deleteRouteDetail(
+			@PathVariable Long routeDetailId) {
+		try {
+			routeDetailService.deleteRouteDetail(routeDetailId);
+		} catch (EntityNotFoundException exception) {
+			throw new NotFoundException(exception);
+		} catch (Exception e) {
+			throw new RuntimeException(e.getCause());
+		}
+	}
 
 }

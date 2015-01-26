@@ -29,12 +29,21 @@ public class RouteServiceImpl implements RouteService {
 
     @Override
     public Route findRoute(Long id) {
-        return routeRepo.findRoute(id);
+    	Route route = routeRepo.findRoute(id);
+        if(route == null)
+        {
+            throw new EntityNotFoundException();
+        }
+        return route;
     }
 
     @Override
     public Route deleteRoute(Long id) throws Exception {
-        return routeRepo.deleteRoute(id);
+        Route route=routeRepo.deleteRoute(id);
+        if(route==null)
+        	throw new EntityNotFoundException(id, null, null);
+        
+        return route;
     }
 
     @Override

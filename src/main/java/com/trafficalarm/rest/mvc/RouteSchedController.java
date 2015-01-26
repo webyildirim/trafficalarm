@@ -67,4 +67,16 @@ public class RouteSchedController {
         return null;
     }
 
+	@RequestMapping(value = "/{routeSchedId}", method = RequestMethod.DELETE)
+	public void deleteRouteSched(
+			@PathVariable Long routeSchedId) {
+		try {
+			routeSchedService.deleteRouteSched(routeSchedId);
+		} catch (EntityNotFoundException exception) {
+			throw new NotFoundException(exception);
+		} catch (Exception e) {
+			throw new RuntimeException(e.getCause());
+		}
+	}
+
 }

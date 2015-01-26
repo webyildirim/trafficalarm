@@ -20,46 +20,48 @@ import java.util.List;
  */
 @Repository
 public class JpaRouteRepoDetail implements RouteDetailRepo {
-    @PersistenceContext
-    private EntityManager manager;
-    
-    private MainDao dao=null;
+	@PersistenceContext
+	private EntityManager manager;
 
-    public JpaRouteRepoDetail() {
-    	dao=new MainDao();
+	private MainDao dao = null;
+
+	public JpaRouteRepoDetail() {
+		dao = new MainDao();
 	}
-    
 
-    @Override
-    public RouteDetail findRouteDetail(Long id) {
-    	BaseEntity entity=new RouteDetail();
-    	entity.setId(id);    	
-        return (RouteDetail) dao.findByPrimaryKey(manager, entity);
-    }
+	@Override
+	public RouteDetail findRouteDetail(Long id) {
+		BaseEntity entity = new RouteDetail();
+		entity.setId(id);
+		return (RouteDetail) dao.findByPrimaryKey(manager, entity);
+	}
 
-    @Override
-    public RouteDetail deleteRouteDetail(Long id) throws Exception {
-    	RouteDetail route=findRouteDetail(id);
-    	dao.removeEntity(manager, route);
-        return route;
-    }
+	@Override
+	public RouteDetail deleteRouteDetail(Long id) throws Exception {
+		RouteDetail routeDetail = findRouteDetail(id);
+		if (routeDetail != null)
+			dao.removeEntity(manager, routeDetail);
+		return routeDetail;
+	}
 
-    @Override
-    public RouteDetail updateRouteDetail(Long id, RouteDetail entity) throws Exception {
-    	entity.setId(id);
-    	entity=(RouteDetail) dao.saveOrUpdateEntity(manager, entity);
-        return entity;
-    }
+	@Override
+	public RouteDetail updateRouteDetail(Long id, RouteDetail entity)
+			throws Exception {
+		entity.setId(id);
+		entity = (RouteDetail) dao.saveOrUpdateEntity(manager, entity);
+		return entity;
+	}
 
-    @Override
-    public RouteDetail createRouteDetail(RouteDetail entity) throws Exception {
-        return (RouteDetail) dao.saveOrUpdateEntity(manager, entity);
-    }
+	@Override
+	public RouteDetail createRouteDetail(RouteDetail entity) throws Exception {
+		return (RouteDetail) dao.saveOrUpdateEntity(manager, entity);
+	}
 
-    @Override
-    public List<RouteDetail> findByRouteId(Long routeId) {
-        Query query = manager.createQuery("SELECT r.details FROM Route r WHERE r.id=?1");
-        query.setParameter(1, routeId);
-        return query.getResultList();
-    }
+	@Override
+	public List<RouteDetail> findByRouteId(Long routeId) {
+		Query query = manager
+				.createQuery("SELECT r.details FROM Route r WHERE r.id=?1");
+		query.setParameter(1, routeId);
+		return query.getResultList();
+	}
 }

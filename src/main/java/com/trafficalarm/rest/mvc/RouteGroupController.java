@@ -155,4 +155,16 @@ public class RouteGroupController {
 			throw new RuntimeException(e.getCause());
 		}
 	}
+
+	@RequestMapping(value = "/{routeGroupId}", method = RequestMethod.DELETE)
+	public void deleteRouteDetail(
+			@PathVariable Long routeGroupId) {
+		try {
+			routeGroupService.deleteRouteGroup(routeGroupId);
+		} catch (EntityNotFoundException exception) {
+			throw new NotFoundException(exception);
+		} catch (Exception e) {
+			throw new RuntimeException(e.getCause());
+		}
+	}
 }

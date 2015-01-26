@@ -14,6 +14,7 @@ import com.trafficalarm.core.repositories.RouteScheduleRepo;
 import com.trafficalarm.core.repositories.RouteRepo;
 import com.trafficalarm.core.services.RouteDetailService;
 import com.trafficalarm.core.services.RouteSchedService;
+import com.trafficalarm.core.services.exceptions.EntityNotFoundException;
 
 /**
  * Created by webyildirim on 7/10/14.
@@ -34,7 +35,11 @@ public class RouteSchedServiceImpl implements RouteSchedService{
 
     @Override
     public RouteSchedule deleteRouteSched(Long id) throws Exception {
-        return routeScheduleRepo.deleteRouteSchedule(id);
+        RouteSchedule routeSched=routeScheduleRepo.deleteRouteSchedule(id);
+        if(routeSched==null)
+        	throw new EntityNotFoundException(id, null, null);
+        
+        return routeSched;
     }
 
 	@Override

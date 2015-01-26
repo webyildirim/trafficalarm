@@ -9,6 +9,7 @@ import com.trafficalarm.core.model.entities.RouteDetail;
 import com.trafficalarm.core.repositories.RouteDetailRepo;
 import com.trafficalarm.core.repositories.RouteRepo;
 import com.trafficalarm.core.services.RouteDetailService;
+import com.trafficalarm.core.services.exceptions.EntityNotFoundException;
 
 /**
  * Created by webyildirim on 7/10/14.
@@ -29,7 +30,11 @@ public class RouteDetailServiceImpl implements RouteDetailService {
 
     @Override
     public RouteDetail deleteRouteDetail(Long id) throws Exception {
-        return routeDetailRepo.deleteRouteDetail(id);
+        RouteDetail routeDetail=routeDetailRepo.deleteRouteDetail(id);
+        if(routeDetail==null)
+        	throw new EntityNotFoundException(id, null, null);
+        
+        return routeDetail;
     }
 
     @Override

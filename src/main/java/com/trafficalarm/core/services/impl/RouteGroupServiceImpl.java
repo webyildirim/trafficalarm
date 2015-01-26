@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.trafficalarm.core.model.entities.Route;
+import com.trafficalarm.core.model.entities.RouteDetail;
 import com.trafficalarm.core.model.entities.RouteGroup;
 import com.trafficalarm.core.model.entities.RouteSchedule;
 import com.trafficalarm.core.repositories.RouteGroupRepo;
@@ -41,7 +42,11 @@ public class RouteGroupServiceImpl implements RouteGroupService {
 
 	@Override
 	public RouteGroup deleteRouteGroup(Long id) throws Exception {
-		return routeGroupRepo.deleteRouteGroup(id);
+        RouteGroup routeGroup=routeGroupRepo.deleteRouteGroup(id);
+        if(routeGroup==null)
+        	throw new EntityNotFoundException(id, null, null);
+        
+        return routeGroup;
 	}
     
     @Override

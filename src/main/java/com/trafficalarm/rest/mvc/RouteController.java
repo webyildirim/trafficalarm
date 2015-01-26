@@ -7,10 +7,12 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
 import com.trafficalarm.core.model.entities.Route;
 import com.trafficalarm.core.model.entities.RouteDetail;
 import com.trafficalarm.core.services.RouteDetailService;
@@ -97,7 +99,7 @@ public class RouteController {
 		}
 	}
 
-	@RequestMapping(value = "/{routeId}/route-details")
+	@RequestMapping(value = "/{routeId}/route-details", method = RequestMethod.GET)
 	public ResponseEntity<RouteDetailListResource> findDetailsByRoute(
 			@PathVariable Long routeId) {
 		try {
@@ -110,5 +112,24 @@ public class RouteController {
 			throw new NotFoundException(exception);
 		}
 	}
+
+	@RequestMapping(value = "/{routeId}", method = RequestMethod.DELETE)
+	public void deleteRouteDetail(
+			@PathVariable Long routeId) {
+		try {
+			routeService.deleteRoute(routeId);
+		} catch (EntityNotFoundException exception) {
+			throw new NotFoundException(exception);
+		} catch (Exception e) {
+			throw new RuntimeException(e.getCause());
+		}
+	}
+
+	// @ExceptionHandler(EntityNotFoundException.class)
+	// public ResponseEntity<Error> bookNotFound(EntityNotFoundException e) {
+	// Error error = new Error("Entity with ID " + e.getEntityId() +
+	// " not found");
+	// return new ResponseEntity<Error>(error, HttpStatus.NOT_FOUND);
+	// }
 
 }
