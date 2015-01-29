@@ -1,11 +1,11 @@
 package com.structure;
 
 
-import com.structure.exception.ApplicationException;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
+
+import com.structure.exception.ApplicationException;
 
 
 public class ServerResponse implements Serializable

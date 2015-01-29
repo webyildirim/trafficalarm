@@ -1,11 +1,11 @@
 package com.structure;
 
 
-import com.structure.util.ObjectUtil;
-
 import java.io.Serializable;
 
 import javax.persistence.Transient;
+
+import com.structure.util.ObjectUtil;
 
 
 public abstract class BaseCompositePK implements Serializable

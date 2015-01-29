@@ -1,13 +1,13 @@
 package com.structure.util.datalist;
 
 
-import com.structure.util.ObjectUtil;
-
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.TreeMap;
 import java.util.Vector;
+
+import com.structure.util.ObjectUtil;
 
 
 public class ListManager

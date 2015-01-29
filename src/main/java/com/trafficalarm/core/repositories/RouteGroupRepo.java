@@ -10,10 +10,10 @@ import com.trafficalarm.core.model.entities.RouteGroup;
  */
 public interface RouteGroupRepo {
     public RouteGroup createRouteGroup(RouteGroup data) throws Exception;
-    public RouteGroup findRouteGroup(Long id);
-    public RouteGroup deleteRouteGroup(Long id) throws Exception; 
+    public RouteGroup findRouteGroup(String id);
+    public RouteGroup deleteRouteGroup(String id) throws Exception; 
     public RouteGroup findRouteGroupByFilter(BaseFilter filter, String queryMethod);
-    public List<RouteGroup> findRouteGroupsByAccount(Long accountId);
+    public List<RouteGroup> findRouteGroupsByAccount(String accountId);
 
     /**
      * @param id the id of the Route to updateRoute
@@ -21,5 +21,5 @@ public interface RouteGroupRepo {
      * @return the updated updateRoute or null if the Route with the id cannot be found
      * @throws Exception 
      */
-    public RouteGroup updateRouteGroup(Long id, RouteGroup data) throws Exception;
+    public RouteGroup updateRouteGroup(String id, RouteGroup data) throws Exception;
 }

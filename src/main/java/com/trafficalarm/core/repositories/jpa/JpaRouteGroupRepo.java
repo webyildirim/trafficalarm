@@ -6,6 +6,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.structure.BaseEntity;
@@ -21,7 +22,8 @@ import com.trafficalarm.core.repositories.RouteGroupRepo;
 public class JpaRouteGroupRepo implements RouteGroupRepo {
     @PersistenceContext
     private EntityManager manager;
-    
+
+	@Autowired
     private MainDao dao=null;
 
     public JpaRouteGroupRepo() {
@@ -34,14 +36,14 @@ public class JpaRouteGroupRepo implements RouteGroupRepo {
     }
 
     @Override
-    public RouteGroup updateRouteGroup(Long id, RouteGroup entity) throws Exception {
+    public RouteGroup updateRouteGroup(String id, RouteGroup entity) throws Exception {
     	entity.setId(id);
     	entity=(RouteGroup) dao.saveOrUpdateEntity(manager, entity);
         return entity;
     }
 
     @Override
-    public RouteGroup findRouteGroup(Long id) {
+    public RouteGroup findRouteGroup(String id) {
     	BaseEntity entity=new RouteGroup();
     	entity.setId(id);    	
         return (RouteGroup) dao.findByPrimaryKey(manager, entity);
@@ -53,14 +55,14 @@ public class JpaRouteGroupRepo implements RouteGroupRepo {
     }
 
     @Override
-    public List<RouteGroup> findRouteGroupsByAccount(Long accountId) {
+    public List<RouteGroup> findRouteGroupsByAccount(String accountId) {
         Query query = manager.createQuery("SELECT rg from RouteGroup gr where rg.owner.id=?1");
         query.setParameter(1, accountId);
         return query.getResultList();
     }
 
     @Override
-    public RouteGroup deleteRouteGroup(Long id) throws Exception {
+    public RouteGroup deleteRouteGroup(String id) throws Exception {
     	RouteGroup routeGroup=findRouteGroup(id);
     	if(routeGroup!=null)
     		dao.removeEntity(manager, routeGroup);

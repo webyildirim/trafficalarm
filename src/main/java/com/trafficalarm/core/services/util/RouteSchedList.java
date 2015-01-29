@@ -11,9 +11,9 @@ import com.trafficalarm.core.model.entities.RouteSchedule;
 public class RouteSchedList {
 
     private List<RouteSchedule> routeSchedules = new ArrayList<RouteSchedule>();
-    private Long routeGroupId;
+    private String routeGroupId;
 
-    public RouteSchedList(Long routeGroupId, List<RouteSchedule> resultList) {
+    public RouteSchedList(String routeGroupId, List<RouteSchedule> resultList) {
         this.routeGroupId = routeGroupId;
         this.routeSchedules = resultList;
     }
@@ -26,11 +26,11 @@ public class RouteSchedList {
 		this.routeSchedules = routeSchedules;
 	}
 
-	public Long getRouteGroupId() {
+	public String getRouteGroupId() {
 		return routeGroupId;
 	}
 
-	public void setRouteGroupId(Long routeGroupId) {
+	public void setRouteGroupId(String routeGroupId) {
 		this.routeGroupId = routeGroupId;
 	}
 }

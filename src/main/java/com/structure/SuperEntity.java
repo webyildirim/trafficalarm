@@ -1,10 +1,6 @@
 package com.structure;
 
 
-import com.structure.util.LocaleUtil;
-import com.structure.util.ObjectUtil;
-import com.structure.util.StringUtility;
-
 import java.io.ObjectStreamException;
 import java.io.Serializable;
 import java.lang.reflect.Method;
@@ -20,6 +16,10 @@ import javax.persistence.Transient;
 import org.hibernate.collection.internal.PersistentBag;
 import org.hibernate.proxy.HibernateProxy;
 
+import com.structure.util.LocaleUtil;
+import com.structure.util.ObjectUtil;
+import com.structure.util.StringUtility;
+
 
 public abstract class SuperEntity implements Serializable, Comparable
 {
@@ -27,16 +27,15 @@ public abstract class SuperEntity implements Serializable, Comparable
     protected String entityName = "";
 
     @Transient
-    public String getEntityName()
-    {
-        return entityName;
-    }
-
-    @Transient
     abstract public Long getId();
 
     abstract public void setId(Long id);
 
+    @Transient
+    public String getEntityName()
+    {
+        return entityName;
+    }
     public void setEntityName(String entityName)
     {
         this.entityName = entityName;
@@ -247,24 +246,6 @@ public abstract class SuperEntity implements Serializable, Comparable
         return this;
     }
 
-
-    @Transient
-    abstract public String toString();
-
-    @Override
-    @Transient
-    public int compareTo(Object object)
-    {
-        if (!(object instanceof SuperEntity))
-            throw new ClassCastException();
-
-        SuperEntity superEntity = (SuperEntity)object;
-        Long idA = getId();
-        Long idB = superEntity.getId();
-
-        return idA.compareTo(idB);
-    }
-
     public Object getPrimaryKeyValue()
     {
         Object result = null;
@@ -348,5 +329,23 @@ public abstract class SuperEntity implements Serializable, Comparable
         }
 
         return null;
+    }
+
+
+    @Transient
+    abstract public String toString();
+
+    @Override
+    @Transient
+    public int compareTo(Object object)
+    {
+        if (!(object instanceof SuperEntity))
+            throw new ClassCastException();
+
+        SuperEntity superEntity = (SuperEntity)object;
+        Long idA = getId();
+        Long idB = superEntity.getId();
+
+        return idA.compareTo(idB);
     }
 }

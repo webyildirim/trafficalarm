@@ -1,17 +1,18 @@
 package com.trafficalarm.core.repositories.jpa;
 
+import java.util.List;
+
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.structure.BaseEntity;
 import com.structure.persistence.MainDao;
 import com.trafficalarm.core.model.entities.Route;
 import com.trafficalarm.core.repositories.RouteRepo;
-
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
-
-import java.util.List;
 
 /**
  * Created by webyildirim on 7/10/14.
@@ -20,7 +21,8 @@ import java.util.List;
 public class JpaRouteRepo implements RouteRepo {
     @PersistenceContext
     private EntityManager manager;
-    
+
+	@Autowired
     private MainDao dao=null;
 
     public JpaRouteRepo() {
@@ -29,21 +31,21 @@ public class JpaRouteRepo implements RouteRepo {
     
 
     @Override
-    public Route findRoute(Long id) {
+    public Route findRoute(String id) {
     	BaseEntity entity=new Route();
     	entity.setId(id);    	
         return (Route) dao.findByPrimaryKey(manager, entity);
     }
 
     @Override
-    public Route deleteRoute(Long id) throws Exception {
+    public Route deleteRoute(String id) throws Exception {
     	Route route=findRoute(id);
     	dao.removeEntity(manager, route);
         return route;
     }
 
     @Override
-    public Route updateRoute(Long id, Route entity) throws Exception {
+    public Route updateRoute(String id, Route entity) throws Exception {
     	entity.setId(id);
     	entity=(Route) dao.saveOrUpdateEntity(manager, entity);
         return entity;
@@ -55,7 +57,7 @@ public class JpaRouteRepo implements RouteRepo {
     }
 
     @Override
-    public List<Route> findByRouteGroup(Long routeGroupId) {
+    public List<Route> findByRouteGroup(String routeGroupId) {
         Query query = manager.createQuery("SELECT rg.routes FROM RouteGroup rg WHERE rg.id=?1");
         query.setParameter(1, routeGroupId);
         return query.getResultList();

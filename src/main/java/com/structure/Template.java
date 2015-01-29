@@ -1,10 +1,10 @@
 package com.structure;
 
 
+import java.io.Serializable;
+
 import com.structure.util.ObjectUtil;
 import com.structure.util.StringUtility;
-
-import java.io.Serializable;
 
 public class Template implements Serializable
 {

@@ -1,8 +1,6 @@
 package com.trafficalarm.core.model.entities;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
 import com.structure.BaseEntity;
@@ -12,9 +10,6 @@ import com.structure.BaseEntity;
  */
 @Entity
 public class RouteSchedule extends BaseEntity{
-    @Id
-    @GeneratedValue
-    private Long id;
 
     private String cronExpression;
     private boolean monApplied, tueApplied, wedApplied, thuApplied, friApplied, satApplied, sunApplied;
@@ -34,15 +29,6 @@ public class RouteSchedule extends BaseEntity{
 	public void setRouteGroup(RouteGroup routeGroup) {
 		this.routeGroup = routeGroup;
 	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
 
 	public String getCronExpression() {
 		return cronExpression;

@@ -1,9 +1,6 @@
 package com.structure.util;
 
 
-import com.structure.ListValue;
-import com.structure.SuperEntity;
-
 import java.lang.reflect.Array;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
@@ -14,6 +11,9 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
+
+import com.structure.ListValue;
+import com.structure.SuperEntity;
 
 
 public class ObjectUtil

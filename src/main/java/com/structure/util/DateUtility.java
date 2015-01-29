@@ -1,12 +1,9 @@
 package com.structure.util;
 
 import java.math.BigDecimal;
-
 import java.sql.Timestamp;
-
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;

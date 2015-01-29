@@ -4,13 +4,13 @@ package com.trafficalarm.core.services.exceptions;
  * Created by webyildirim on 6/28/14.
  */
 public class EntityNotFoundException extends RuntimeException {
-	private Long entityId;
+	private String entityId;
 
-	public Long getEntityId() {
+	public String getEntityId() {
 		return entityId;
 	}
 
-	public void setEntityId(Long entityId) {
+	public void setEntityId(String entityId) {
 		this.entityId = entityId;
 	}
 
@@ -18,7 +18,7 @@ public class EntityNotFoundException extends RuntimeException {
     public EntityNotFoundException() {
     }
     
-	public EntityNotFoundException(Long entityId, String message, Throwable cause) {
+	public EntityNotFoundException(String entityId, String message, Throwable cause) {
         super(message, cause);
 		this.entityId=entityId;
     }

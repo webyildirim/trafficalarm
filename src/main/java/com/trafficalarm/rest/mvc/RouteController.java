@@ -6,8 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -45,7 +45,8 @@ public class RouteController {
 	}
 
 	@RequestMapping(value = "/{routeId}", method = RequestMethod.GET)
-	public ResponseEntity<RouteResource> getRoute(@PathVariable Long routeId) {
+	@PreAuthorize("hasRole('ROLE_USER')")
+	public ResponseEntity<RouteResource> getRoute(@PathVariable String routeId) {
 		Route route = routeService.findRoute(routeId);
 		if (route != null) {
 			RouteResource res = new RouteResourceAsm().toResource(route);
@@ -56,8 +57,9 @@ public class RouteController {
 	}
 
 	@RequestMapping(value = "/{routeId}/route-details", method = RequestMethod.POST)
+	@PreAuthorize("hasRole('ROLE_USER')")
 	public ResponseEntity<RouteDetailResource> createRouteDetail(
-			@PathVariable Long routeId,
+			@PathVariable String routeId,
 			@RequestBody RouteDetailResource sentResource) {
 		RouteDetail createdEntity = null;
 		try {
@@ -78,8 +80,9 @@ public class RouteController {
 	}
 
 	@RequestMapping(value = "/{routeId}", method = RequestMethod.PUT)
+	@PreAuthorize("hasRole('ROLE_USER')")
 	public ResponseEntity<RouteResource> updateRoute(
-			@PathVariable Long entityId, @RequestBody RouteResource sentResource) {
+			@PathVariable String entityId, @RequestBody RouteResource sentResource) {
 		Route updatedEntity = null;
 		try {
 			updatedEntity = routeService.updateRoute(entityId,
@@ -100,8 +103,9 @@ public class RouteController {
 	}
 
 	@RequestMapping(value = "/{routeId}/route-details", method = RequestMethod.GET)
+	@PreAuthorize("hasRole('ROLE_USER')")
 	public ResponseEntity<RouteDetailListResource> findDetailsByRoute(
-			@PathVariable Long routeId) {
+			@PathVariable String routeId) {
 		try {
 			RouteDetailList list = routeService.findDetailsByRoute(routeId);
 			RouteDetailListResource res = new RouteDetailListResourceAsm()
@@ -114,8 +118,9 @@ public class RouteController {
 	}
 
 	@RequestMapping(value = "/{routeId}", method = RequestMethod.DELETE)
+	@PreAuthorize("hasRole('ROLE_USER')")
 	public void deleteRouteDetail(
-			@PathVariable Long routeId) {
+			@PathVariable String routeId) {
 		try {
 			routeService.deleteRoute(routeId);
 		} catch (EntityNotFoundException exception) {

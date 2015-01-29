@@ -8,9 +8,9 @@ import com.trafficalarm.core.services.util.RouteDetailList;
  */
 public interface RouteService {
 	
-    public Route findRoute(Long id); 
-    public Route updateRoute(Long id, Route data) throws Exception;
-    public Route deleteRoute(Long id) throws Exception; 
-    public Route createRoute(Long routeGroupId, Route data) throws Exception; 
-    public RouteDetailList findDetailsByRoute(Long routeId);
+    public Route findRoute(String id); 
+    public Route updateRoute(String id, Route data) throws Exception;
+    public Route deleteRoute(String id) throws Exception; 
+    public Route createRoute(String routeGroupId, Route data) throws Exception; 
+    public RouteDetailList findDetailsByRoute(String routeId);
 }

@@ -11,10 +11,10 @@ public interface RouteScheduleRepo {
 
 	public RouteSchedule createRouteSchedule(RouteSchedule data) throws Exception;
 
-	public RouteSchedule findRouteSchedule(Long id);
+	public RouteSchedule findRouteSchedule(String id);
 
-	public RouteSchedule deleteRouteSchedule(Long id)
+	public RouteSchedule deleteRouteSchedule(String id)
 			throws Exception;
 
-	public List<RouteSchedule> findByRouteGroup(Long routeGroupId);
+	public List<RouteSchedule> findByRouteGroup(String routeGroupId);
 }

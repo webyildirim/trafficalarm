@@ -3,6 +3,7 @@ package com.trafficalarm.rest.mvc;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,7 +31,8 @@ public class RouteDetailController {
     
     @RequestMapping(value="/{routeDetailId}",
         method = RequestMethod.GET)
-    public ResponseEntity<RouteDetailResource> getRouteDetail(@PathVariable Long routeDetailId)
+	@PreAuthorize("hasRole('ROLE_USER')")
+    public ResponseEntity<RouteDetailResource> getRouteDetail(@PathVariable String routeDetailId)
     {
         RouteDetail routeDetail = routeDetailService.findRouteDetail(routeDetailId);
         if(routeDetail != null) {
@@ -42,8 +44,9 @@ public class RouteDetailController {
     }
 
 	@RequestMapping(value = "/{routeDetailId}", method = RequestMethod.DELETE)
+	@PreAuthorize("hasRole('ROLE_USER')")
 	public void deleteRouteDetail(
-			@PathVariable Long routeDetailId) {
+			@PathVariable String routeDetailId) {
 		try {
 			routeDetailService.deleteRouteDetail(routeDetailId);
 		} catch (EntityNotFoundException exception) {

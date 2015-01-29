@@ -1,7 +1,5 @@
 package com.structure.exception;
 
-import com.structure.exception.ApplicationException;
-import com.structure.exception.InfrastructureException;
 
 public class UniqueConstraintException extends InfrastructureException
 {

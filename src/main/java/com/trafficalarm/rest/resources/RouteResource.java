@@ -10,13 +10,13 @@ import com.trafficalarm.core.model.entities.Route;
 public class RouteResource extends ResourceSupport {
     private String title;
 
-    private Long rid;
+    private String rid;
 
-    public Long getRid() {
+    public String getRid() {
         return rid;
     }
 
-    public void setRid(Long rid) {
+    public void setRid(String rid) {
         this.rid = rid;
     }
 

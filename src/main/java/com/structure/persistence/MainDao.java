@@ -12,6 +12,7 @@ import javax.persistence.NonUniqueResultException;
 import javax.persistence.Query;
 
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.stereotype.Component;
 
 import com.structure.BaseEntity;
 import com.structure.BaseFilter;
@@ -24,6 +25,8 @@ import com.structure.exception.RemovedEntityException;
 import com.structure.logger.LogUtil;
 import com.structure.util.ObjectUtil;
 
+
+@Component
 public class MainDao
 {
     public void removeEntities(EntityManager manager, ServerResponse response, Collection entityList) throws Exception

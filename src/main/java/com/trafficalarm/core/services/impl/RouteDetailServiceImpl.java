@@ -24,12 +24,12 @@ public class RouteDetailServiceImpl implements RouteDetailService {
     private RouteDetailRepo routeDetailRepo;
 
     @Override
-    public RouteDetail findRouteDetail(Long id) {
+    public RouteDetail findRouteDetail(String id) {
         return routeDetailRepo.findRouteDetail(id);
     }
 
     @Override
-    public RouteDetail deleteRouteDetail(Long id) throws Exception {
+    public RouteDetail deleteRouteDetail(String id) throws Exception {
         RouteDetail routeDetail=routeDetailRepo.deleteRouteDetail(id);
         if(routeDetail==null)
         	throw new EntityNotFoundException(id, null, null);
@@ -38,12 +38,12 @@ public class RouteDetailServiceImpl implements RouteDetailService {
     }
 
     @Override
-    public RouteDetail updateRouteDetail(Long id, RouteDetail entity) throws Exception {
+    public RouteDetail updateRouteDetail(String id, RouteDetail entity) throws Exception {
         return routeDetailRepo.updateRouteDetail(id, entity);
     }
 
 	@Override
-	public RouteDetail createRouteDetail(Long routeId, RouteDetail data) throws Exception {
+	public RouteDetail createRouteDetail(String routeId, RouteDetail data) throws Exception {
 		Route route=routeRepo.findRoute(routeId);
 		data.setRoute(route);
 		routeDetailRepo.createRouteDetail(data);

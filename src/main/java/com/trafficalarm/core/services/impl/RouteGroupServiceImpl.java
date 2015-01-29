@@ -7,15 +7,14 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.trafficalarm.core.model.entities.Route;
-import com.trafficalarm.core.model.entities.RouteDetail;
 import com.trafficalarm.core.model.entities.RouteGroup;
 import com.trafficalarm.core.model.entities.RouteSchedule;
 import com.trafficalarm.core.repositories.RouteGroupRepo;
 import com.trafficalarm.core.repositories.RouteRepo;
 import com.trafficalarm.core.services.RouteGroupService;
 import com.trafficalarm.core.services.exceptions.EntityNotFoundException;
-import com.trafficalarm.core.services.util.RouteSchedList;
 import com.trafficalarm.core.services.util.RouteList;
+import com.trafficalarm.core.services.util.RouteSchedList;
 
 /**
  * Created by webyildirim on 7/10/14.
@@ -31,17 +30,17 @@ public class RouteGroupServiceImpl implements RouteGroupService {
     private RouteRepo routeRepo;
 
     @Override
-    public RouteGroup findRouteGroup(Long id) {
+    public RouteGroup findRouteGroup(String id) {
         return routeGroupRepo.findRouteGroup(id);
     }
 
     @Override
-    public RouteGroup updateRouteGroup(Long id, RouteGroup entity) throws Exception {
+    public RouteGroup updateRouteGroup(String id, RouteGroup entity) throws Exception {
         return routeGroupRepo.updateRouteGroup(id, entity);
     }
 
 	@Override
-	public RouteGroup deleteRouteGroup(Long id) throws Exception {
+	public RouteGroup deleteRouteGroup(String id) throws Exception {
         RouteGroup routeGroup=routeGroupRepo.deleteRouteGroup(id);
         if(routeGroup==null)
         	throw new EntityNotFoundException(id, null, null);
@@ -50,7 +49,7 @@ public class RouteGroupServiceImpl implements RouteGroupService {
 	}
     
     @Override
-    public RouteList findAllRoutes(Long routeGroupId) {
+    public RouteList findAllRoutes(String routeGroupId) {
     	RouteGroup routeGroup = routeGroupRepo.findRouteGroup(routeGroupId);
         if(routeGroup == null)
         {
@@ -60,7 +59,7 @@ public class RouteGroupServiceImpl implements RouteGroupService {
     }
     
     @Override
-    public RouteSchedList findAllRouteSchedules(Long routeGroupId) {
+    public RouteSchedList findAllRouteSchedules(String routeGroupId) {
     	RouteGroup routeGroup = routeGroupRepo.findRouteGroup(routeGroupId);
         if(routeGroup == null)
         {

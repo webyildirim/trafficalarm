@@ -1,11 +1,6 @@
 package com.structure.util;
 
 
-import com.structure.BaseEntity;
-import com.structure.SuperEntity;
-import com.structure.util.datalist.StaticData;
-import com.structure.vo.MapObject;
-
 import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -15,14 +10,10 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Collection;
-import java.util.Collections;
-import java.util.Date;
-import java.util.Iterator;
-import java.util.List;
 import java.util.Properties;
+
+import com.structure.vo.MapObject;
 
 
 public class ConversionUtil

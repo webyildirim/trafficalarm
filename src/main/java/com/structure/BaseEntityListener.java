@@ -1,14 +1,12 @@
 package com.structure;
 
 
-import com.structure.util.DateUtility;
-
-import java.util.Date;
-
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
+
+import com.structure.util.DateUtility;
 
 
 public class BaseEntityListener

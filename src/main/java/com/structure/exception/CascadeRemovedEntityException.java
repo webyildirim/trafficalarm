@@ -1,8 +1,6 @@
 package com.structure.exception;
 
 import com.structure.BaseEntity;
-import com.structure.exception.ApplicationException;
-import com.structure.exception.InfrastructureException;
 
 public class CascadeRemovedEntityException extends InfrastructureException
 {

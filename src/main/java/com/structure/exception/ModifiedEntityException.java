@@ -1,17 +1,15 @@
 
 package com.structure.exception;
 
-import com.structure.SuperEntity;
-import com.structure.exception.ApplicationException;
-import com.structure.exception.InfrastructureException;
+import com.structure.BaseEntity;
 
 
 public class ModifiedEntityException extends InfrastructureException
 {
-    private SuperEntity modifiedEntity;
-    private SuperEntity loadedEntity;
+    private BaseEntity modifiedEntity;
+    private BaseEntity loadedEntity;
 
-    public ModifiedEntityException(SuperEntity modifiedEntity, SuperEntity loadedEntity)
+    public ModifiedEntityException(BaseEntity modifiedEntity, BaseEntity loadedEntity)
     {
         exceptionCode = "01";
         exceptionType = ApplicationException.EXCEPTION_TYPE_WARNING;
@@ -19,22 +17,22 @@ public class ModifiedEntityException extends InfrastructureException
         setLoadedEntity(loadedEntity);
     }
 
-    public SuperEntity getModifiedEntity()
+    public BaseEntity getModifiedEntity()
     {
         return modifiedEntity;
     }
 
-    public void setModifiedEntity(SuperEntity modifiedEntity)
+    public void setModifiedEntity(BaseEntity modifiedEntity)
     {
         this.modifiedEntity = modifiedEntity;
     }
 
-    public SuperEntity getLoadedEntity()
+    public BaseEntity getLoadedEntity()
     {
         return loadedEntity;
     }
 
-    public void setLoadedEntity(SuperEntity loadedEntity)
+    public void setLoadedEntity(BaseEntity loadedEntity)
     {
         this.loadedEntity = loadedEntity;
     }

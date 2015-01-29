@@ -2,7 +2,6 @@ package com.structure.vo;
 
 
 import java.io.Serializable;
-
 import java.util.HashMap;
 import java.util.Set;
 

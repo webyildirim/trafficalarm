@@ -10,9 +10,9 @@ import com.trafficalarm.core.model.entities.Route;
  */
 public class RouteList {
     private List<Route> entities = new ArrayList<Route>();
-    private Long routeGroupId;
+    private String routeGroupId;
 
-    public RouteList(Long routeGroupId, List<Route> routes) {
+    public RouteList(String routeGroupId, List<Route> routes) {
         this.routeGroupId = routeGroupId;
         this.entities = routes;
     }
@@ -25,11 +25,11 @@ public class RouteList {
 		this.entities = entities;
 	}
 
-	public Long getRouteGroupId() {
+	public String getRouteGroupId() {
         return routeGroupId;
     }
 
-    public void setRouteGroupId(Long routeGroupId) {
+    public void setRouteGroupId(String routeGroupId) {
         this.routeGroupId = routeGroupId;
     }
 }

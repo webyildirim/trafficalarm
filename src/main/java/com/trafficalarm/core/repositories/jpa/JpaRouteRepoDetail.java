@@ -1,19 +1,18 @@
 package com.trafficalarm.core.repositories.jpa;
 
-import org.springframework.stereotype.Repository;
-
-import com.structure.BaseEntity;
-import com.structure.persistence.MainDao;
-import com.trafficalarm.core.model.entities.Route;
-import com.trafficalarm.core.model.entities.RouteDetail;
-import com.trafficalarm.core.repositories.RouteDetailRepo;
-import com.trafficalarm.core.repositories.RouteRepo;
+import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
-import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
+import com.structure.BaseEntity;
+import com.structure.persistence.MainDao;
+import com.trafficalarm.core.model.entities.RouteDetail;
+import com.trafficalarm.core.repositories.RouteDetailRepo;
 
 /**
  * Created by webyildirim on 7/10/14.
@@ -23,6 +22,7 @@ public class JpaRouteRepoDetail implements RouteDetailRepo {
 	@PersistenceContext
 	private EntityManager manager;
 
+	@Autowired
 	private MainDao dao = null;
 
 	public JpaRouteRepoDetail() {
@@ -30,14 +30,14 @@ public class JpaRouteRepoDetail implements RouteDetailRepo {
 	}
 
 	@Override
-	public RouteDetail findRouteDetail(Long id) {
+	public RouteDetail findRouteDetail(String id) {
 		BaseEntity entity = new RouteDetail();
 		entity.setId(id);
 		return (RouteDetail) dao.findByPrimaryKey(manager, entity);
 	}
 
 	@Override
-	public RouteDetail deleteRouteDetail(Long id) throws Exception {
+	public RouteDetail deleteRouteDetail(String id) throws Exception {
 		RouteDetail routeDetail = findRouteDetail(id);
 		if (routeDetail != null)
 			dao.removeEntity(manager, routeDetail);
@@ -45,7 +45,7 @@ public class JpaRouteRepoDetail implements RouteDetailRepo {
 	}
 
 	@Override
-	public RouteDetail updateRouteDetail(Long id, RouteDetail entity)
+	public RouteDetail updateRouteDetail(String id, RouteDetail entity)
 			throws Exception {
 		entity.setId(id);
 		entity = (RouteDetail) dao.saveOrUpdateEntity(manager, entity);
@@ -58,7 +58,7 @@ public class JpaRouteRepoDetail implements RouteDetailRepo {
 	}
 
 	@Override
-	public List<RouteDetail> findByRouteId(Long routeId) {
+	public List<RouteDetail> findByRouteId(String routeId) {
 		Query query = manager
 				.createQuery("SELECT r.details FROM Route r WHERE r.id=?1");
 		query.setParameter(1, routeId);

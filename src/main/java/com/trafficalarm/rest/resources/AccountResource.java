@@ -1,10 +1,10 @@
 package com.trafficalarm.rest.resources;
 
+import org.springframework.hateoas.ResourceSupport;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.trafficalarm.core.model.entities.Account;
-
-import org.springframework.hateoas.ResourceSupport;
 
 /**
  * Created by webyildirim on 6/28/14.
@@ -14,13 +14,13 @@ public class AccountResource extends ResourceSupport {
 
     private String password;
 
-    private Long rid;
+    private String rid;
 
-    public Long getRid() {
+    public String getRid() {
         return rid;
     }
 
-    public void setRid(Long rid) {
+    public void setRid(String rid) {
         this.rid = rid;
     }
     public String getName() {

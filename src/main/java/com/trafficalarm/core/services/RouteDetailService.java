@@ -7,8 +7,8 @@ import com.trafficalarm.core.model.entities.RouteDetail;
  */
 public interface RouteDetailService {
 	
-    public RouteDetail findRouteDetail(Long id); 
-    public RouteDetail updateRouteDetail(Long id, RouteDetail data) throws Exception;
-    public RouteDetail deleteRouteDetail(Long id) throws Exception; 
-    public RouteDetail createRouteDetail(Long routeId, RouteDetail data) throws Exception; 
+    public RouteDetail findRouteDetail(String id); 
+    public RouteDetail updateRouteDetail(String id, RouteDetail data) throws Exception;
+    public RouteDetail deleteRouteDetail(String id) throws Exception; 
+    public RouteDetail createRouteDetail(String routeId, RouteDetail data) throws Exception; 
 }

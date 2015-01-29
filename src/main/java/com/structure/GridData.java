@@ -1,12 +1,12 @@
 package com.structure;
 
 
-import com.structure.util.ObjectUtil;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Vector;
+
+import com.structure.util.ObjectUtil;
 
 
 public class GridData implements Serializable

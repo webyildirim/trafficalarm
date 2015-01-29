@@ -1,13 +1,13 @@
 package com.trafficalarm.rest.resources.asm;
 
+import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
+
 import org.springframework.hateoas.mvc.ResourceAssemblerSupport;
 
 import com.trafficalarm.core.model.entities.RouteGroup;
 import com.trafficalarm.rest.mvc.AccountController;
 import com.trafficalarm.rest.mvc.RouteGroupController;
 import com.trafficalarm.rest.resources.RouteGroupResource;
-
-import static org.springframework.hateoas.mvc.ControllerLinkBuilder.*;
 
 /**
  * Created by webyildirim on 6/30/14.

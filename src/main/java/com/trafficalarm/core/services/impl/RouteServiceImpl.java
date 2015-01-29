@@ -28,7 +28,7 @@ public class RouteServiceImpl implements RouteService {
     private RouteGroupRepo routeGroupRepo;
 
     @Override
-    public Route findRoute(Long id) {
+    public Route findRoute(String id) {
     	Route route = routeRepo.findRoute(id);
         if(route == null)
         {
@@ -38,7 +38,7 @@ public class RouteServiceImpl implements RouteService {
     }
 
     @Override
-    public Route deleteRoute(Long id) throws Exception {
+    public Route deleteRoute(String id) throws Exception {
         Route route=routeRepo.deleteRoute(id);
         if(route==null)
         	throw new EntityNotFoundException(id, null, null);
@@ -47,12 +47,12 @@ public class RouteServiceImpl implements RouteService {
     }
 
     @Override
-    public Route updateRoute(Long id, Route entity) throws Exception {
+    public Route updateRoute(String id, Route entity) throws Exception {
         return routeRepo.updateRoute(id, entity);
     }
 
 	@Override
-	public Route createRoute(Long routeGroupId, Route data) throws Exception {
+	public Route createRoute(String routeGroupId, Route data) throws Exception {
 		RouteGroup routeGroup=routeGroupRepo.findRouteGroup(routeGroupId);
 		data.setRouteGroup(routeGroup);
 		routeRepo.createRoute(data);
@@ -60,7 +60,7 @@ public class RouteServiceImpl implements RouteService {
 	}
 
 	@Override
-	public RouteDetailList findDetailsByRoute(Long routeId) {
+	public RouteDetailList findDetailsByRoute(String routeId) {
     	Route route = routeRepo.findRoute(routeId);
         if(route == null)
         {

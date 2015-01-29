@@ -1,14 +1,14 @@
 package com.structure;
 
 
-import com.structure.util.ObjectUtil;
-import com.structure.util.StringUtility;
-
 import java.io.Serializable;
 import java.util.Collection;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
+
+import com.structure.util.ObjectUtil;
+import com.structure.util.StringUtility;
 
 
 public abstract class BaseFilter implements Serializable

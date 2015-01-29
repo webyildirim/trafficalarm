@@ -9,7 +9,8 @@ public class LoggedProcess
     private String method;
     private int version;
     private String entityName;
-    private long entityId;
+    //private long entityId;
+    private String entityId;
     private String entityValue;
     private Date dateOfProcess;
 
@@ -63,17 +64,15 @@ public class LoggedProcess
         this.entityName = entityName;
     }
 
-    public long getEntityId()
-    {
-        return entityId;
-    }
+    public String getEntityId() {
+		return entityId;
+	}
 
-    public void setEntityId(long entityId)
-    {
-        this.entityId = entityId;
-    }
+	public void setEntityId(String entityId) {
+		this.entityId = entityId;
+	}
 
-    public String getEntityValue()
+	public String getEntityValue()
     {
         return entityValue;
     }

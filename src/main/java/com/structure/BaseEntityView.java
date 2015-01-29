@@ -1,10 +1,10 @@
 package com.structure;
 
 
-import com.structure.util.ObjectUtil;
-
 import javax.persistence.MappedSuperclass;
 import javax.persistence.Transient;
+
+import com.structure.util.ObjectUtil;
 
 
 @MappedSuperclass

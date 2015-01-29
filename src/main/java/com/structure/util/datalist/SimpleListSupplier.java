@@ -1,11 +1,11 @@
 package com.structure.util.datalist;
 
 
-import com.structure.util.ObjectUtil;
-
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Vector;
+
+import com.structure.util.ObjectUtil;
 
 public abstract class SimpleListSupplier extends BaseListSupplier
 {

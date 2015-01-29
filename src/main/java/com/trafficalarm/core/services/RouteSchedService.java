@@ -7,7 +7,7 @@ import com.trafficalarm.core.model.entities.RouteSchedule;
  */
 public interface RouteSchedService {
 	
-    public RouteSchedule findRouteSched(Long id); 
-    public RouteSchedule deleteRouteSched(Long id) throws Exception; 
-    public RouteSchedule createRouteSched(Long routeGroupId, RouteSchedule data) throws Exception; 
+    public RouteSchedule findRouteSched(String id); 
+    public RouteSchedule deleteRouteSched(String id) throws Exception; 
+    public RouteSchedule createRouteSched(String routeGroupId, RouteSchedule data) throws Exception; 
 }

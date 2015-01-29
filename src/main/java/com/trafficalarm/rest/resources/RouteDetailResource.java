@@ -12,15 +12,15 @@ public class RouteDetailResource extends ResourceSupport {
 	
 	private String coordinate;
     private String title;
-    private Long routeId;
+    private String routeId;
 
-    private Long rid;
+    private String rid;
 
-    public Long getRid() {
+    public String getRid() {
         return rid;
     }
 
-    public void setRid(Long rid) {
+    public void setRid(String rid) {
         this.rid = rid;
     }
 
@@ -32,11 +32,11 @@ public class RouteDetailResource extends ResourceSupport {
         this.title = title;
     }
 
-	public Long getRouteId() {
+	public String getRouteId() {
 		return routeId;
 	}
 
-	public void setRouteId(Long routeId) {
+	public void setRouteId(String routeId) {
 		this.routeId = routeId;
 	}
 

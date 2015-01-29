@@ -6,8 +6,6 @@ import java.util.Collection;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
@@ -18,9 +16,6 @@ import com.structure.BaseEntity;
  */
 @Entity
 public class RouteGroup extends BaseEntity{
-    @Id
-    @GeneratedValue
-    private Long id;
 
     private String title;
 
@@ -39,20 +34,12 @@ public class RouteGroup extends BaseEntity{
 		routeSchedules=new ArrayList<RouteSchedule>();
 	}
 	
-	public RouteGroup(Long id) {
+	public RouteGroup(String id) {
 		entityName="RouteGroup";
-		this.id=id;
+		setId(id);
 		routes=new ArrayList<Route>();
 		routes=new ArrayList<Route>();
 	}
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getTitle() {
         return title;

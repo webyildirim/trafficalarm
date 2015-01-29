@@ -1,9 +1,9 @@
 package com.trafficalarm.rest.resources;
 
-import org.springframework.hateoas.ResourceSupport;
-
 import java.util.ArrayList;
 import java.util.List;
+
+import org.springframework.hateoas.ResourceSupport;
 
 /**
  * Created by webyildirim on 7/22/14.

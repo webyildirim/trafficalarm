@@ -13,13 +13,13 @@ public class RouteSchedResource extends ResourceSupport {
     private boolean monApplied, tueApplied, wedApplied, thuApplied, friApplied, satApplied, sunApplied;
     private String time;
 
-    private Long rid;
+    private String rid;
 
-    public Long getRid() {
+    public String getRid() {
         return rid;
     }
 
-    public void setRid(Long rid) {
+    public void setRid(String rid) {
         this.rid = rid;
     }
 

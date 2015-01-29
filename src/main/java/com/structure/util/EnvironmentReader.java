@@ -2,7 +2,6 @@ package com.structure.util;
 
 import java.io.File;
 import java.io.FileInputStream;
-
 import java.util.Map;
 import java.util.Properties;
 

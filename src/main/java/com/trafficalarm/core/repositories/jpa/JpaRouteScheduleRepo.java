@@ -6,6 +6,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.structure.BaseEntity;
@@ -20,7 +21,8 @@ import com.trafficalarm.core.repositories.RouteScheduleRepo;
 public class JpaRouteScheduleRepo implements RouteScheduleRepo{
     @PersistenceContext
     private EntityManager manager;
-    
+
+	@Autowired
     private MainDao dao=null;
 
     public JpaRouteScheduleRepo() {
@@ -33,14 +35,14 @@ public class JpaRouteScheduleRepo implements RouteScheduleRepo{
     }
 
     @Override
-    public RouteSchedule findRouteSchedule(Long id) {
+    public RouteSchedule findRouteSchedule(String id) {
     	BaseEntity entity=new RouteSchedule();
     	entity.setId(id);    	
         return (RouteSchedule) dao.findByPrimaryKey(manager, entity);
     }
 
     @Override
-    public RouteSchedule deleteRouteSchedule(Long id) throws Exception {
+    public RouteSchedule deleteRouteSchedule(String id) throws Exception {
     	RouteSchedule routeGroup=findRouteSchedule(id);
     	if(routeGroup!=null)
     		dao.removeEntity(manager, routeGroup);
@@ -48,7 +50,7 @@ public class JpaRouteScheduleRepo implements RouteScheduleRepo{
     }
 
     @Override
-    public List<RouteSchedule> findByRouteGroup(Long routeGroupId) {
+    public List<RouteSchedule> findByRouteGroup(String routeGroupId) {
         Query query = manager.createQuery("SELECT rg.routeSchedules FROM RouteGroup rg WHERE rg.id=?1");
         query.setParameter(1, routeGroupId);
         return query.getResultList();
