@@ -136,30 +136,30 @@ public abstract class BaseEntity implements Serializable
     }
 
     @Transient
-    public SuperEntity copyEntity() throws CloneNotSupportedException
+    public BaseEntity copyEntity() throws CloneNotSupportedException
     {
-        SuperEntity superEntity = clone();
-        superEntity.clearIdFields();
+    	BaseEntity BaseEntity = clone();
+        BaseEntity.clearIdFields();
 
-        return superEntity;
+        return BaseEntity;
     }
 
     @Transient
-    public SuperEntity cloneRowObject() throws CloneNotSupportedException
+    public BaseEntity cloneRowObject() throws CloneNotSupportedException
     {
         return copyEntity();
     }
 
     @Transient
-    public SuperEntity shallowCopy() throws CloneNotSupportedException
+    public BaseEntity shallowCopy() throws CloneNotSupportedException
     {
-        return (SuperEntity)super.clone();
+        return (BaseEntity)super.clone();
     }
 
     @Transient
-    public SuperEntity clone() throws CloneNotSupportedException
+    public BaseEntity clone() throws CloneNotSupportedException
     {
-        SuperEntity obj = (SuperEntity)super.clone();
+    	BaseEntity obj = (BaseEntity)super.clone();
 
         ObjectUtil.deepCopy(this, obj, this.getClass(), false);
 
@@ -179,7 +179,7 @@ public abstract class BaseEntity implements Serializable
                 while (itr.hasNext())
                 {
                     if (levelCursor < level)
-                        ((SuperEntity)itr.next()).initialize(levelCursor, level);
+                        ((BaseEntity)itr.next()).initialize(levelCursor, level);
                     else
                         itr.next();
                 }
@@ -190,7 +190,7 @@ public abstract class BaseEntity implements Serializable
             while (itr.hasNext())
             {
                 if (levelCursor < level)
-                    ((SuperEntity)itr.next()).initialize(levelCursor, level);
+                    ((BaseEntity)itr.next()).initialize(levelCursor, level);
                 else
                     itr.next();
             }
@@ -246,10 +246,10 @@ public abstract class BaseEntity implements Serializable
                     if (result == null)
                         continue;
 
-                    if (result instanceof SuperEntity)
+                    if (result instanceof BaseEntity)
                     {
                         if (levelCursor < level)
-                            ((SuperEntity)result).initialize(levelCursor, level);
+                            ((BaseEntity)result).initialize(levelCursor, level);
                     } else if (result instanceof Collection)
                         initialize((Collection)result, levelCursor, level);
                 }
