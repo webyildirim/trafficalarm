@@ -10,7 +10,6 @@
        http://www.springframework.org/schema/context/spring-context.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-
     <!-- Access voters -->
     <bean id="accessDecisionManager" class="org.springframework.security.access.vote.UnanimousBased"
           xmlns="http://www.springframework.org/schema/beans">
