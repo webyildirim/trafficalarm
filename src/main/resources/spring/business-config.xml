@@ -13,6 +13,17 @@
         http://www.springframework.org/schema/tx
         http://www.springframework.org/schema/tx/spring-tx.xsd">
 
+    
+    <context:component-scan base-package="com.structure"/>
+    <context:component-scan base-package="com.trafficalarm.core.services.impl"/>
+    <!--context:component-scan base-package="com.trafficalarm.core.security.ex"/-->
+    <context:component-scan base-package="com.trafficalarm.rest.filter"/>
+    <context:component-scan base-package="com.trafficalarm.rest.configuration"/>
+    <context:component-scan base-package="com.trafficalarm.rest.resource"/>
+    <context:component-scan base-package="com.trafficalarm.rest.api.user"/>
+    <context:component-scan base-package="com.trafficalarm.rest.mvc"/>
+    <context:component-scan base-package="com.trafficalarm.rest.mvc"/>
+    
     <context:component-scan base-package="com.trafficalarm.core.repositories.jpa"/>
     <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
  
@@ -45,18 +56,6 @@
 
     <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager"/>
 
-    <tx:annotation-driven/>
-    <mvc:annotation-driven />
-    <mvc:default-servlet-handler/>
-    
-    <context:component-scan base-package="com.structure"/>
-    <context:component-scan base-package="com.trafficalarm.services.impl"/>
-    <!--context:component-scan base-package="com.trafficalarm.core.security.ex"/-->
-    <context:component-scan base-package="com.trafficalarm.rest.configuration"/>
-    <context:component-scan base-package="com.trafficalarm.rest.filter"/>
-    <context:component-scan base-package="com.trafficalarm.rest.resource"/>
-    <context:component-scan base-package="com.trafficalarm.rest.api.user"/>
-    <context:component-scan base-package="com.trafficalarm.rest.mvc"/>
     
     <import resource="classpath:spring/security/security-configuration.xml"/>
     <import resource="classpath:spring/security/authentication-managers.xml"/>
@@ -64,4 +63,7 @@
     <import resource="classpath:spring/oauth/oauth2-configuration.xml"/>
     <import resource="classpath:spring/oauth/token-store.xml"/>
     <import resource="classpath:spring/oauth/client-details.xml"/>
+    <tx:annotation-driven/>
+    <mvc:annotation-driven />
+    <mvc:default-servlet-handler/>
 </beans>
