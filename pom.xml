@@ -21,18 +21,42 @@
     </dependencyManagement>
 
     <dependencies>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-beans</artifactId>
+		</dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-core</artifactId>
+        </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-context</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
+            <artifactId>spring-web</artifactId>
+        </dependency>
+        <dependency>
+			<groupId>org.springframework.integration</groupId>
+			<artifactId>spring-integration-core</artifactId>
+			<version>4.0.5.RELEASE</version>
+		</dependency>
+        <dependency>
+			<groupId>org.springframework.integration</groupId>
+			<artifactId>spring-integration-mail</artifactId>
+			<version>4.0.5.RELEASE</version>
+		</dependency>
+        <!--dependency>
+            <groupId>org.springframework</groupId>
             <artifactId>spring-webmvc</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-orm</artifactId>
-        </dependency>
+        </dependency -->
+		
+		
         <dependency>
             <groupId>org.springframework.hateoas</groupId>
             <artifactId>spring-hateoas</artifactId>
@@ -59,20 +83,11 @@
 			<version>2.0.5.RELEASE</version>
 		</dependency>
         <dependency>
-			<groupId>org.springframework.integration</groupId>
-			<artifactId>spring-integration-mail</artifactId>
-			<version>4.1.2.RELEASE</version>
-		</dependency>
-        <dependency>
 			<groupId>javax.mail</groupId>
 			<artifactId>mail</artifactId>
 			<version>1.4</version>
 		</dependency>
-        <dependency>
-			<groupId>org.springframework.integration</groupId>
-			<artifactId>spring-integration-core</artifactId>
-			<version>4.1.2.RELEASE</version>
-		</dependency>
+		
         <dependency>
 			<groupId>org.apache.velocity</groupId>
 			<artifactId>velocity</artifactId>
@@ -83,6 +98,20 @@
 			<artifactId>hibernate-validator</artifactId>
 			<version>5.1.3.Final</version>
 		</dependency>
+		
+		<dependency>
+			<groupId>org.springframework.data</groupId>
+			<artifactId>spring-data-jpa</artifactId>
+			<version>1.7.2.RELEASE</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>javax.annotation</groupId>
+			<artifactId>javax.annotation-api</artifactId>
+			<version>1.2</version>
+		</dependency>
+		
+		<!-- restfull -->
 		<dependency>
 			<groupId>joda-time</groupId>
 			<artifactId>joda-time</artifactId>
@@ -96,11 +125,6 @@
 			<groupId>com.google.code.gson</groupId>
 			<artifactId>gson</artifactId>
 			<version>2.3.1</version>
-		</dependency>
-		<dependency>
-			<groupId>javax.annotation</groupId>
-			<artifactId>javax.annotation-api</artifactId>
-			<version>1.2</version>
 		</dependency>
 		<dependency>
 			<groupId>org.glassfish.jersey.media</groupId>
@@ -131,6 +155,7 @@
 		        </exclusion>
     		</exclusions>
 		</dependency>
+		
         
 
         <!-- MySQL database driver -->
@@ -192,23 +217,30 @@
             <version>0.9.1</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjweaver</artifactId>
+            <version>1.7.4</version>
+        </dependency>
 
-
+		<!-- security -->
         <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-web</artifactId>
             <version>3.2.5.RELEASE</version>
         </dependency>
         <dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-core</artifactId>
+			<version>3.2.5.RELEASE</version>
+		</dependency>
+        <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-config</artifactId>
             <version>3.2.5.RELEASE</version>
         </dependency>
-        <dependency>
-            <groupId>org.aspectj</groupId>
-            <artifactId>aspectjweaver</artifactId>
-            <version>1.7.4</version>
-        </dependency>
+        
+        <!-- servlet-->
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
