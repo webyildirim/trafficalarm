@@ -8,17 +8,20 @@ import org.springframework.security.access.annotation.Jsr250Voter;
 import org.springframework.security.access.hierarchicalroles.RoleHierarchy;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.util.Assert;
-
+import org.springframework.stereotype.Component;
+//import org.springframework.util.Assert;
 /**
  * Created by iainporter on 14/10/2014.
  */
+
+@Component
 public class HierarchicalJsr250Voter extends Jsr250Voter {
 
+		
     private RoleHierarchy roleHierarchy = null;
 
     public HierarchicalJsr250Voter(RoleHierarchy roleHierarchy) {
-        Assert.notNull(roleHierarchy, "RoleHierarchy must not be null");
+        //Assert.notNull(roleHierarchy, "RoleHierarchy must not be null");
         this.roleHierarchy = roleHierarchy;
     }
 
