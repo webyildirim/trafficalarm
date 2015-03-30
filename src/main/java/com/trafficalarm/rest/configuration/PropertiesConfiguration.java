@@ -10,8 +10,8 @@ import org.springframework.core.io.FileSystemResource;
 import org.springframework.core.io.Resource;
 import org.springframework.scheduling.annotation.EnableAsync;
 
-@Configuration
-@EnableAsync
+//@Configuration
+//@EnableAsync
 public class PropertiesConfiguration {
 
     private final Logger LOG = LoggerFactory.getLogger(this.getClass());

@@ -10,9 +10,6 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Component;
 //import org.springframework.util.Assert;
-/**
- * Created by iainporter on 14/10/2014.
- */
 
 @Component
 public class HierarchicalJsr250Voter extends Jsr250Voter {
