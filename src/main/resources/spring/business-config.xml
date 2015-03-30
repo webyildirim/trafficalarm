@@ -15,19 +15,18 @@
         http://www.springframework.org/schema/tx/spring-tx.xsd
         http://www.springframework.org/schema/security
         http://www.springframework.org/schema/security/spring-security.xsd">
-
     
     <context:component-scan base-package="com.structure"/>
     <context:component-scan base-package="com.trafficalarm.core.services.impl"/>
-    <!--context:component-scan base-package="com.trafficalarm.core.security.ex"/-->
     <context:component-scan base-package="com.trafficalarm.rest.filter"/>
     <context:component-scan base-package="com.trafficalarm.rest.configuration"/>
     <context:component-scan base-package="com.trafficalarm.rest.resource"/>
     <context:component-scan base-package="com.trafficalarm.rest.api.user"/>
     <context:component-scan base-package="com.trafficalarm.rest.mvc"/>
-    <context:component-scan base-package="com.trafficalarm.rest.mvc"/>
-    
     <context:component-scan base-package="com.trafficalarm.core.repositories.jpa"/>
+    
+    <tx:annotation-driven/>
+    
     <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
  
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
@@ -42,6 +41,7 @@
         <!--property name="driverClassName" value="org.h2.Driver"/-->
     	<!--/bean-->
 
+    
     <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
         <property name="dataSource" ref="dataSource"/>
         <property name="jpaVendorAdapter">
@@ -58,6 +58,11 @@
     </bean>
 
     <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager"/>
+    
+    <bean id="propertyPlaceholderConfigurer"
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="location"  value="WEB-INF/classes/properties/app-production.properties"/>
+	</bean>
 
     <!--mvc:resources mapping="/app/**" location="/app/build/"/>
 
@@ -71,13 +76,12 @@
                                    access="ROLE_DUMMY"/>
     </security:global-method-security> -->
     
-    <import resource="classpath:spring/security/security-configuration.xml"/>
-    <import resource="classpath:spring/security/authentication-managers.xml"/>
-    <import resource="classpath:spring/security/endpoint-configuration.xml"/>
-    <import resource="classpath:spring/oauth/oauth2-configuration.xml"/>
-    <import resource="classpath:spring/oauth/token-store.xml"/>
-    <import resource="classpath:spring/oauth/client-details.xml"/>
-    <tx:annotation-driven/>
     <mvc:annotation-driven />
     <mvc:default-servlet-handler/>
+    <import resource="security/security-configuration.xml"/>
+    <import resource="security/authentication-managers.xml"/>
+    <import resource="security/endpoint-configuration.xml"/>
+    <import resource="oauth/oauth2-configuration.xml"/>
+    <import resource="oauth/token-store.xml"/>
+    <import resource="oauth/client-details.xml"/>
 </beans>
