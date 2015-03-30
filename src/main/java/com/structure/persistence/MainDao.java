@@ -16,7 +16,6 @@ import org.springframework.stereotype.Component;
 
 import com.structure.BaseEntity;
 import com.structure.BaseFilter;
-import com.structure.GridData;
 import com.structure.ServerResponse;
 import com.structure.SuperEntity;
 import com.structure.exception.CascadeRemovedEntityException;
@@ -423,46 +422,6 @@ public class MainDao
         Query query = (Query)returnedObject;
 
         return query;
-    }
-
-    public ServerResponse synchronizeEntities(EntityManager manager, GridData gridData) throws Exception
-    {
-        return synchronizeEntities(manager, gridData, false);
-    }
-
-    public ServerResponse synchronizeEntities(EntityManager manager, GridData gridData, ServerResponse response) throws Exception
-    {
-        return synchronizeEntities(manager, gridData, response, false);
-    }
-
-    public ServerResponse synchronizeEntities(EntityManager manager, GridData gridData, boolean selfReferenced) throws Exception
-    {
-        return synchronizeEntities(manager, gridData, new ServerResponse(), selfReferenced);
-    }
-
-    public ServerResponse synchronizeEntities(EntityManager manager, GridData gridData, ServerResponse response, boolean selfReferenced) throws Exception
-    {
-        try
-        {
-            //removeEntities(manager, response, gridData.getGarbageData());
-            Collection entities = new ArrayList();
-            entities.addAll(gridData.getNewBuffer());
-            entities.addAll(gridData.getUpdatedBuffer());
-            persistEntities(manager, response, entities);
-            removeEntities(manager, response, gridData.getGarbageData());
-            gridData.getSynchBuffer().removeAll(gridData.getGarbageData());
-
-            if (!selfReferenced)
-                refreshEntities(manager, response, gridData.getSynchBuffer());
-            else
-                refreshSelfReferencedEntity(manager, response, gridData.getSynchBuffer());
-        }
-        catch (Exception exc)
-        {
-            throw exc;
-        }
-
-        return response;
     }
 
     public void refreshSelfReferencedEntity(EntityManager manager, ServerResponse response, Collection entityList)
