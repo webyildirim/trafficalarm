@@ -25,11 +25,11 @@ public class JpaVerificationTokenRepo implements VerificationTokenRepo
 	private EntityManager manager;
 
 	@Autowired
-	private MainDao dao = null;
+	private MainDao dao;
 
 	public JpaVerificationTokenRepo()
 	{
-		dao = new MainDao();
+		//dao = new MainDao();
 	}
 
 	@Override

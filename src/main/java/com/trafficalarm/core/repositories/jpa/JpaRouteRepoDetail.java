@@ -23,10 +23,11 @@ public class JpaRouteRepoDetail implements RouteDetailRepo {
 	private EntityManager manager;
 
 	@Autowired
-	private MainDao dao = null;
+	private MainDao dao;
 
-	public JpaRouteRepoDetail() {
-		dao = new MainDao();
+	public JpaRouteRepoDetail() 
+	{
+		//dao = new MainDao();
 	}
 
 	@Override

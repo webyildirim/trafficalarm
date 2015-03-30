@@ -24,10 +24,10 @@ public class JpaRouteGroupRepo implements RouteGroupRepo {
     private EntityManager manager;
 
 	@Autowired
-    private MainDao dao=null;
+    private MainDao dao;
 
     public JpaRouteGroupRepo() {
-    	dao=new MainDao();
+    	//dao=new MainDao();
 	}
     
     @Override

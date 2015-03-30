@@ -23,10 +23,10 @@ public class JpaRouteRepo implements RouteRepo {
     private EntityManager manager;
 
 	@Autowired
-    private MainDao dao=null;
+    private MainDao dao;
 
     public JpaRouteRepo() {
-    	dao=new MainDao();
+    	//dao=new MainDao();
 	}
     
 

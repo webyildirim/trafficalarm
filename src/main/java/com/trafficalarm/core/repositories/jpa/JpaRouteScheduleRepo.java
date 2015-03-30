@@ -23,10 +23,10 @@ public class JpaRouteScheduleRepo implements RouteScheduleRepo{
     private EntityManager manager;
 
 	@Autowired
-    private MainDao dao=null;
+    private MainDao dao;
 
     public JpaRouteScheduleRepo() {
-    	dao=new MainDao();
+    	//dao=new MainDao();
 	}
     
     @Override
