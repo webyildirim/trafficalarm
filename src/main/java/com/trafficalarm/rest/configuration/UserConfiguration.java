@@ -51,13 +51,13 @@ public class UserConfiguration {
     }
     
     @Bean
-    public AccountService userService() {
+    public AccountService accountService() {
         return new AccountServiceImpl(userRepository, validator, passwordEncoder);
     } 
     
     @Bean
     public AccountController userResource() {
-        return new AccountController(userService(), verificationTokenService(), tokenServices, passwordEncoder, clientDetailsService);
+        return new AccountController(accountService(), verificationTokenService(), tokenServices, passwordEncoder, clientDetailsService);
     }
 
     @Bean
