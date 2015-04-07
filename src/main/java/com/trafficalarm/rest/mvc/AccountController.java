@@ -8,6 +8,11 @@ import java.util.LinkedHashSet;
 import java.util.Map;
 import java.util.Set;
 
+import javax.annotation.security.RolesAllowed;
+import javax.ws.rs.GET;
+import javax.ws.rs.PUT;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.SecurityContext;
@@ -83,6 +88,7 @@ public class AccountController extends BaseResource
 		this.accountService = accountService;
 	}
 
+	/**
 	@RequestMapping(value = "/{accountId}", method = RequestMethod.GET)
 	@PreAuthorize("hasRole('ROLE_USER')")
 	public ResponseEntity<AccountResource> getAccount(@PathVariable String accountId)
@@ -96,10 +102,36 @@ public class AccountController extends BaseResource
 		{
 			return new ResponseEntity<AccountResource>(HttpStatus.NOT_FOUND);
 		}
+	}*/
+
+	@RolesAllowed({"ROLE_USER"})
+    @Path("{userId}")
+    @GET
+	public ApiUser getUser(final @PathParam("userId") String userId, final @Context SecurityContext securityContext)
+	{
+		Account requestingUser = ensureUserIsAuthorized(securityContext, userId);
+		return accountService.getUser(requestingUser.getId());
 	}
 
-	@RequestMapping(value = "/{accountId}/route-groups", method = RequestMethod.POST)
-	@PreAuthorize("hasRole('ROLE_USER')")
+    @RolesAllowed({"ROLE_USER"})
+    @Path("{userId}")
+    @PUT
+	public Response updateUser(@Context SecurityContext sc, @PathParam("userId") String userId, UpdateUserRequest request)
+	{
+		Account requestingUser = ensureUserIsAuthorized(sc, userId);
+
+		boolean sendVerificationToken = StringUtils.hasLength(request.getEmailAddress())
+				&& !request.getEmailAddress().equals(requestingUser.getName());
+		ApiUser savedUser = accountService.saveUser(userId, request);
+		if (sendVerificationToken)
+		{
+			verificationTokenService.sendEmailVerificationToken(savedUser.getId());
+		}
+		return Response.ok().build();
+	}
+
+	@RequestMapping(method = RequestMethod.POST)
+	@PreAuthorize("permitAll")
 	public Response signupUser(final CreateUserRequest request, @Context SecurityContext sc, @Context UriInfo uriInfo)
 	{
 		ApiUser user = accountService.createUser(request);
@@ -108,14 +140,6 @@ public class AccountController extends BaseResource
 		verificationTokenService.sendEmailRegistrationToken(createUserResponse.getApiUser().getId());
 		URI location = uriInfo.getAbsolutePathBuilder().path(createUserResponse.getApiUser().getId()).build();
 		return Response.created(location).entity(createUserResponse).build();
-	}
-
-	@RequestMapping(value = "/{accountId}", method = RequestMethod.GET)
-	@PreAuthorize("hasRole('ROLE_USER')")
-	public ApiUser getUser(final @PathVariable String userId, final @Context SecurityContext securityContext)
-	{
-		Account requestingUser = ensureUserIsAuthorized(securityContext, userId);
-		return accountService.getUser(requestingUser.getId());
 	}
 
 	private OAuth2AccessToken createTokenForNewUser(String userId, String password, String clientId)
@@ -129,22 +153,6 @@ public class AccountController extends BaseResource
 				null);
 		OAuth2Authentication oAuth2Authentication = new OAuth2Authentication(oAuth2Request, userAuthentication);
 		return tokenServices.createAccessToken(oAuth2Authentication);
-	}
-
-	@RequestMapping(value = "/{userId}", method = RequestMethod.PUT)
-	@PreAuthorize("hasRole('ROLE_USER')")
-	public Response updateUser(@Context SecurityContext sc, @PathVariable String userId, UpdateUserRequest request)
-	{
-		Account requestingUser = ensureUserIsAuthorized(sc, userId);
-
-		boolean sendVerificationToken = StringUtils.hasLength(request.getEmailAddress())
-				&& !request.getEmailAddress().equals(requestingUser.getName());
-		ApiUser savedUser = accountService.saveUser(userId, request);
-		if (sendVerificationToken)
-		{
-			verificationTokenService.sendEmailVerificationToken(savedUser.getId());
-		}
-		return Response.ok().build();
 	}
 
 	private OAuth2Request createOAuth2Request(Map<String, String> requestParameters, String clientId,

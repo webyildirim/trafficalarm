@@ -67,6 +67,7 @@ public class AdministrationController extends BaseResource
 		return new ResponseEntity<AccountListResource>(res, HttpStatus.OK);
 	}
 
+	/**
 	@RequestMapping(method = RequestMethod.POST)
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	public ResponseEntity<AccountResource> createAccount(@RequestBody AccountResource sentAccount)
@@ -86,6 +87,6 @@ public class AdministrationController extends BaseResource
 			exception.printStackTrace();
 			throw new RuntimeException(exception.getMessage());
 		}
-	}
+	}*/
 
 }

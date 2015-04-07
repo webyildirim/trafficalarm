@@ -14,7 +14,6 @@ import org.springframework.stereotype.Component;
 @Component
 public class HierarchicalJsr250Voter extends Jsr250Voter {
 
-		
     private RoleHierarchy roleHierarchy = null;
 
     public HierarchicalJsr250Voter(RoleHierarchy roleHierarchy) {

@@ -56,7 +56,7 @@ public class UserConfiguration {
     } 
     
     @Bean
-    public AccountController userResource() {
+    public AccountController accountController() {
         return new AccountController(accountService(), verificationTokenService(), tokenServices, passwordEncoder, clientDetailsService);
     }
 

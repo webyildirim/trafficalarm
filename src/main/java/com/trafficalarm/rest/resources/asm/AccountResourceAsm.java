@@ -23,7 +23,7 @@ public class AccountResourceAsm extends ResourceAssemblerSupport<Account, Accoun
         res.setName(account.getName());
         res.setPassword(account.getPassword());
         res.setRid(account.getId());
-        res.add(linkTo(methodOn(AccountController.class).getAccount(account.getId())).withSelfRel());
+        /**res.add(linkTo(methodOn(AccountController.class).getUser(account.getId(), null)).withSelfRel());*/
         res.add(linkTo(methodOn(AccountController.class).findAllRouteGroups(account.getId())).withRel("route-groups"));
         return res;
     }
