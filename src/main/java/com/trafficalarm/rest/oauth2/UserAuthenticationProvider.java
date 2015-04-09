@@ -18,10 +18,10 @@ import com.trafficalarm.rest.api.user.ApiUser;
  */
 public class UserAuthenticationProvider implements AuthenticationProvider {
 
-    private final AccountService userService;
+    private final AccountService accountService;
 
-    public UserAuthenticationProvider(final AccountService userService) {
-        this.userService = userService;
+    public UserAuthenticationProvider(final AccountService accountService) {
+        this.accountService = accountService;
     }
 
     @Override
@@ -31,7 +31,7 @@ public class UserAuthenticationProvider implements AuthenticationProvider {
         String password = authentication.getCredentials() != null ? authentication.getCredentials().toString() : null;
         try {
             // create an authentication request
-            final ApiUser apiUser = this.userService.authenticate(username, password);
+            final ApiUser apiUser = this.accountService.authenticate(username, password);
             final UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(username, password, Arrays.<GrantedAuthority>asList(new SimpleGrantedAuthority("ROLE_USER")));
             token.setDetails(apiUser);
             return token;
